@@ -1,12 +1,14 @@
 import React from 'react';
 import './index.css';
+import TestTitle from './components/test-title';
+import { observer } from 'mobx-react-lite';
 
-function App() {
+const App = () => {
   return (
     <div>
-      Hello Dream team Belarus!!!
+      <TestTitle />
     </div>
   );
-}
+};
 
-export default App;
+export default observer(App);
