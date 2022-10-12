@@ -7,16 +7,20 @@ const TestTitle = () => {
 
   return (
     <div>
-      <h2 style={{ textAlign: 'center', marginTop: '300px' }}>{store.hello}</h2>
-      <div
-        style={{
-          display: 'flex',
-          justifyContent: 'center',
-          columnGap: '30px',
-        }}
-      >
-        <button onClick={store.sayBye}>Say bye</button>
-        <button onClick={store.sayHello}>Say Hello</button>
+      <div>
+        <h2 style={{ textAlign: 'center', marginTop: '300px' }}>
+          {store.hello}
+        </h2>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            columnGap: '30px',
+          }}
+        >
+          <button onClick={store.sayBye}>Say bye</button>
+          <button onClick={store.sayHello}>Say Hello</button>
+        </div>
       </div>
     </div>
   );

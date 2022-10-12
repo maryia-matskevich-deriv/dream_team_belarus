@@ -1,0 +1,213 @@
+.header-menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.header-menu-left {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex: 1;
+  height: 50px;
+  order: -1;
+}
+.header-menu-platform {
+  display: flex;
+  align-items: center;
+  padding: 1rem 3rem 1rem 1rem;
+  transition: background-color 0.3s;
+  cursor: pointer;
+  font-size: 1.4rem;
+  margin: 0 1.6rem;
+}
+.header-menu-platform:hover {
+  background-color: #e6e9e9;
+  border-radius: 8px;
+}
+.header-menu-link {
+  font-size: 1.4rem;
+  text-align: left;
+  padding: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: #999999;
+}
+.header-menu-link:hover {
+  background-color: #e6e9e9;
+  border-radius: 8px;
+  color: #111111;
+}
+.header-menu-right {
+  display: inline-flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+  order: 1;
+}
+.header-menu-settings {
+  font-size: 1.2rem;
+  text-align: left;
+  padding: 1rem 2rem;
+  margin-right: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  color: #111111;
+}
+.header-menu-popover {
+  position: absolute;
+  background-color: #e6e9e9;
+  border-radius: 5px;
+  width: fit-content;
+  padding: 0.5rem 0;
+  color: #111111;
+}
+.header-menu-currency {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  margin: 0 1.6rem;
+  border-left: 1px solid #e6e9e9;
+}
+.header-menu-currency:hover {
+  background-color: #e6e9e9;
+}
+.header-menu-deposit {
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0.7rem 1.6rem;
+  display: inline-flex;
+  border: 0;
+  border-radius: 4px;
+  transition: all 0.2s cubic-bezier(0.65, 0.05, 0.36, 1);
+  outline: 0;
+  margin: 0 4.6em 0 0 !important;
+  background: #ff444f;
+  color: #e6e9e9;
+}
+.header-menu-deposit:hover {
+  outline: rgb(255, 0, 0) dashed 1px;
+}
+.header-menu-auth {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.header-menu-login {
+  cursor: pointer;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  border-radius: 4px;
+  outline: 0;
+  padding: 0.7rem 1.6rem;
+  transition: all 0.2s cubic-bezier(0.65, 0.05, 0.36, 1);
+  white-space: nowrap;
+  color: #ff444f;
+  background: white;
+  margin: 0 2rem;
+}
+.header-menu-login:hover {
+  background: #e6e9e9;
+}
+.header-menu-signup {
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+  cursor: pointer;
+  white-space: nowrap;
+  padding: 0.7rem 1.6rem;
+  display: inline-flex;
+  border: 0;
+  border-radius: 4px;
+  transition: all 0.2s cubic-bezier(0.65, 0.05, 0.36, 1);
+  outline: 0;
+  margin: 0 4.6em 0 0 !important;
+  background: #ff444f;
+  color: #e6e9e9;
+}
+.header-menu-signup:hover {
+  background: rgb(255, 68, 79, 0.8);
+}
+
+.modal-base {
+  top: 6%;
+  left: 35%;
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  border: 1px solid #888;
+  width: 20%;
+  height: 20%;
+  opacity: 0;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  transform: scale(0.8);
+}
+.modal-base_after-open {
+  opacity: 1;
+  transform: scale(1);
+}
+.modal-base_before-close {
+  transform: scale(0.2);
+  opacity: 0;
+}
+.overlay-base {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(66, 66, 66, 0.5);
+  opacity: 0;
+  transition: all 0.3s ease-out;
+}
+.overlay-base_after-open {
+  opacity: 1;
+}
+.overlay-base_before-close {
+  opacity: 0;
+}
+.account-types {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  text-align: center;
+  padding: 5px 0;
+}
+.account-type {
+  width: 100%;
+  height: 100%;
+  padding: 5px 0;
+}
+.account-currency {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.account-currency:hover {
+  background: #e6e9e9;
+  border-radius: 5px;
+}
+.account-currency_bold {
+  font-weight: bold;
+}
+.account-currency_small {
+  font-size: 12px;
+  color: grey;
+}
+.account-list {
+  padding: 0 10px;
+}
