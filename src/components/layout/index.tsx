@@ -1,11 +1,32 @@
 import React, { useState } from 'react';
 import AccountPopup from './account-popup';
-import './_.css';
+import styles from './styles.module.css';
 
 type THeader = {
   is_login?: boolean;
   currency?: any;
   accounts?: any;
+};
+
+type THeaderLinks = { layer: string; link: string; style?: any }[];
+type THeaderContent = { left_side: THeaderLinks; right_side: THeaderLinks };
+const header_links: THeaderContent = {
+  left_side: [
+    { layer: 'Reports', link: 'https://app.deriv.com/reports/positions' },
+    { layer: 'Cashier', link: 'https://app.deriv.com/cashier' },
+  ],
+  right_side: [
+    {
+      layer: 'Log in',
+      link: 'https://oauth.deriv.com/oauth2/authorize?app_id=16929',
+      style: styles.headerLogin,
+    },
+    {
+      layer: 'Sign up',
+      link: 'https://deriv.com/signup/',
+      style: styles.headerSignup,
+    },
+  ],
 };
 
 const Header = ({
@@ -26,20 +47,16 @@ const Header = ({
 
   return (
     <>
-      <div className="header-menu">
-        <div className="header-menu-left">
-          <div className="header-menu-platform">DTrader Air</div>
-          <a
-            href="https://app.deriv.com/reports/positions"
-            className="header-menu-link"
-          >
-            Reports
-          </a>
-          <a href="https://app.deriv.com/cashier" className="header-menu-link">
-            Cashier
-          </a>
+      <div className={styles.header}>
+        <div className={styles.headerLeft}>
+          <div className={styles.headerPlatform}>DTrader Air</div>
+          {header_links.left_side.map(({ layer, link }) => (
+            <a key={layer} href={link} className={styles.headerLink}>
+              {layer}
+            </a>
+          ))}
         </div>
-        <div className="header-menu-right">
+        <div className={styles.headerRight}>
           {is_login ? (
             <>
               <a
@@ -47,14 +64,14 @@ const Header = ({
                 style={{ textDecoration: 'none' }}
               >
                 <div
-                  className="header-menu-settings"
+                  className={styles.headerSettings}
                   onMouseOver={() => setHover(true)}
                   onMouseOut={() => setHover(false)}
                 >
                   Account
                 </div>
                 {is_hover && (
-                  <div className="header-menu-popover">
+                  <div className={styles.headerPopover}>
                     Manage account settings
                   </div>
                 )}
@@ -66,7 +83,7 @@ const Header = ({
                 accounts={accounts}
               />
               <div onClick={() => setOpen(true)}>
-                <div className={'header-menu-currency'}>
+                <div className={styles.headerCurrency}>
                   Currency: {currency.Demo} USD
                 </div>
               </div>
@@ -74,24 +91,17 @@ const Header = ({
                 href="https://app.deriv.com/cashier/deposit"
                 style={{ textDecoration: 'none' }}
               >
-                <button className="header-menu-deposit">Deposit</button>
+                <button className={styles.headerDeposit}>Deposit</button>
               </a>
             </>
           ) : (
-            <div className="header-menu-auth">
+            <div className={styles.headerAuth}>
               <button onClick={() => setLogin(true)}>toggle login</button>
-              <a
-                href="https://oauth.deriv.com/oauth2/authorize?app_id=16929"
-                style={{ textDecoration: 'none' }}
-              >
-                <button className="header-menu-login">Log in</button>
-              </a>
-              <a
-                href="https://deriv.com/signup/"
-                style={{ textDecoration: 'none' }}
-              >
-                <button className="header-menu-signup">Sign up</button>{' '}
-              </a>
+              {header_links.right_side.map(({ layer, link, style }) => (
+                <a key={layer} href={link} style={{ textDecoration: 'none' }}>
+                  <button className={style}>{layer}</button>
+                </a>
+              ))}
             </div>
           )}
         </div>

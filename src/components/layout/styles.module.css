@@ -1,9 +1,9 @@
-.header-menu {
+.header {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
 }
-.header-menu-left {
+.headerLeft {
   display: inline-flex;
   justify-content: flex-start;
   align-items: center;
@@ -11,7 +11,7 @@
   height: 50px;
   order: -1;
 }
-.header-menu-platform {
+.headerPlatform {
   display: flex;
   align-items: center;
   padding: 1rem 3rem 1rem 1rem;
@@ -20,11 +20,11 @@
   font-size: 1.4rem;
   margin: 0 1.6rem;
 }
-.header-menu-platform:hover {
+.headerPlatform:hover {
   background-color: #e6e9e9;
   border-radius: 8px;
 }
-.header-menu-link {
+.headerLink {
   font-size: 1.4rem;
   text-align: left;
   padding: 1rem;
@@ -32,19 +32,19 @@
   text-decoration: none;
   color: #999999;
 }
-.header-menu-link:hover {
+.headerLink:hover {
   background-color: #e6e9e9;
   border-radius: 8px;
   color: #111111;
 }
-.header-menu-right {
+.headerRight {
   display: inline-flex;
   justify-content: flex-end;
   align-items: center;
   height: 50px;
   order: 1;
 }
-.header-menu-settings {
+.headerSettings {
   font-size: 1.2rem;
   text-align: left;
   padding: 1rem 2rem;
@@ -53,7 +53,7 @@
   text-decoration: none;
   color: #111111;
 }
-.header-menu-popover {
+.headerPopover {
   position: absolute;
   background-color: #e6e9e9;
   border-radius: 5px;
@@ -61,7 +61,7 @@
   padding: 0.5rem 0;
   color: #111111;
 }
-.header-menu-currency {
+.headerCurrency {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -72,10 +72,10 @@
   margin: 0 1.6rem;
   border-left: 1px solid #e6e9e9;
 }
-.header-menu-currency:hover {
+.headerCurrency:hover {
   background-color: #e6e9e9;
 }
-.header-menu-deposit {
+.headerDeposit {
   vertical-align: middle;
   align-items: center;
   justify-content: center;
@@ -92,15 +92,15 @@
   background: #ff444f;
   color: #e6e9e9;
 }
-.header-menu-deposit:hover {
+.headerDeposit:hover {
   outline: rgb(255, 0, 0) dashed 1px;
 }
-.header-menu-auth {
+.headerAuth {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
-.header-menu-login {
+.headerLogin {
   cursor: pointer;
   display: inline-flex;
   justify-content: center;
@@ -115,10 +115,10 @@
   background: white;
   margin: 0 2rem;
 }
-.header-menu-login:hover {
+.headerLogin:hover {
   background: #e6e9e9;
 }
-.header-menu-signup {
+.headerSignup {
   vertical-align: middle;
   align-items: center;
   justify-content: center;
@@ -135,11 +135,11 @@
   background: #ff444f;
   color: #e6e9e9;
 }
-.header-menu-signup:hover {
+.headerSignup:hover {
   background: rgb(255, 68, 79, 0.8);
 }
 
-.modal-base {
+.modalBase {
   top: 6%;
   left: 35%;
   position: relative;
@@ -154,15 +154,15 @@
   transition: all 0.2s ease-in-out;
   transform: scale(0.8);
 }
-.modal-base_after-open {
+.modalBaseAfterOpen {
   opacity: 1;
   transform: scale(1);
 }
-.modal-base_before-close {
+.modalBaseBeforeClose {
   transform: scale(0.2);
   opacity: 0;
 }
-.overlay-base {
+.overlayBase {
   position: fixed;
   top: 0;
   left: 0;
@@ -172,42 +172,42 @@
   opacity: 0;
   transition: all 0.3s ease-out;
 }
-.overlay-base_after-open {
+.overlayBaseAfterOpen {
   opacity: 1;
 }
-.overlay-base_before-close {
+.overlayBaseBeforeClose {
   opacity: 0;
 }
-.account-types {
+.accountTypes {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   text-align: center;
   padding: 5px 0;
 }
-.account-type {
+.accountType {
   width: 100%;
   height: 100%;
   padding: 5px 0;
 }
-.account-currency {
+.currency {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-between;
   padding: 10px 0;
 }
-.account-currency:hover {
+.currency:hover {
   background: #e6e9e9;
   border-radius: 5px;
 }
-.account-currency_bold {
+.currencyBold {
   font-weight: bold;
 }
-.account-currency_small {
+.currencySmall {
   font-size: 12px;
   color: grey;
 }
-.account-list {
+.accountList {
   padding: 0 10px;
 }

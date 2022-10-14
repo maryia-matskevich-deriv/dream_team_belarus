@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import './_.css';
+import styles from './styles.module.css';
+
+const account_content = ['Demo', 'Real'];
 
 const AccountPopup = ({ is_open, onRequestClose, accounts, currency }: any) => {
   const [account_type, setAccountType] = useState('Demo');
@@ -10,56 +12,45 @@ const AccountPopup = ({ is_open, onRequestClose, accounts, currency }: any) => {
       onRequestClose={onRequestClose}
       contentLabel="Modal"
       className={{
-        base: 'modal-base',
-        afterOpen: 'modal-base_after-open',
-        beforeClose: 'modal-base_before-close',
+        base: styles.modalBase,
+        afterOpen: styles.modalBaseAfterOpen,
+        beforeClose: styles.modalBaseBeforeClose,
       }}
       overlayClassName={{
-        base: 'overlay-base',
-        afterOpen: 'overlay-base_after-open',
-        beforeClose: 'overlay-base_before-close',
+        base: styles.overlayBase,
+        afterOpen: styles.overlayBaseAfterOpen,
+        beforeClose: styles.overlayBaseBeforeClose,
       }}
       shouldCloseOnOverlayClick={true}
       closeTimeoutMS={1000}
     >
       <div>
-        <div className={'account-types'}>
-          <div
-            onClick={() => setAccountType('Demo')}
-            className={'account-type'}
-            style={{
-              borderBottom: `${
-                account_type === 'Demo' ? '2px solid red' : '2px solid grey'
-              }`,
-              fontWeight: `${account_type === 'Demo' ? 'bold' : 'normal'}`,
-            }}
-          >
-            Demo
-          </div>
-          <div
-            onClick={() => setAccountType('Real')}
-            className={'account-type'}
-            style={{
-              borderBottom: `${
-                account_type === 'Real' ? '2px solid red' : '2px solid grey'
-              }`,
-              fontWeight: `${account_type === 'Real' ? 'bold' : 'normal'}`,
-            }}
-          >
-            Real
-          </div>
+        <div className={styles.accountTypes}>
+          {account_content.map((account) => (
+            <div
+              onClick={() => setAccountType(account)}
+              className={styles.accountType}
+              style={{
+                borderBottom: `${
+                  account_type === account ? '2px solid red' : '2px solid grey'
+                }`,
+                fontWeight: `${account_type === account ? 'bold' : 'normal'}`,
+              }}
+            >
+              {account}
+            </div>
+          ))}
         </div>
-        <div className={'account-list'}>
+        <div className={styles.accountList}>
           Deriv Account:
-          <div className={'account-currency'}>
+          <div className={styles.currency}>
             <div>
-              <img src={accounts.icon} alt="" width="40px" height="40px" />
-              <div className={'account-currency_bold'}>{account_type}</div>
-              <div className={'account-currency_small'}>
+              <div className={styles.currencyBold}>{account_type}</div>
+              <div className={styles.currencySmall}>
                 {accounts[account_type]}
               </div>
             </div>
-            <div className={'account-currency_bold'}>
+            <div className={styles.currencyBold}>
               {currency[account_type]} USD
             </div>
           </div>
