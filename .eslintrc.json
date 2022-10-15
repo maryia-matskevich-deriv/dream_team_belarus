@@ -29,6 +29,6 @@
             "error",
             "single"
         ],
-        "@typescript-eslint/no-use-before-define": ["warning"]
+        "@typescript-eslint/no-use-before-define": ["warn"]
     }
 }
