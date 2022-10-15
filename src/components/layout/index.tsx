@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import AccountPopup from './account-popup';
-import styles from './styles.module.css';
+import styles from './layout.module.css';
 
 type THeader = {
     is_login?: boolean;
-    currency?: any;
-    accounts?: any;
+    currency?: Record<'Demo' | 'Real', number>;
+    accounts?: Record<'Demo' | 'Real' | 'icon', string>;
 };
-
-type THeaderLinks = { layer: string; link: string; style?: any }[];
+type THeaderLinks = { layer: string; link: string; style?: string }[];
 type THeaderContent = { left_side: THeaderLinks; right_side: THeaderLinks };
+
 const header_links: THeaderContent = {
     left_side: [
         { layer: 'Reports', link: 'https://app.deriv.com/reports/positions' },

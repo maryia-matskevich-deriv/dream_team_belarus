@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
 import Modal from 'react-modal';
-import styles from './styles.module.css';
+import styles from './layout.module.css';
+
+type TAccountPopupProps = {
+    is_open: boolean;
+    onRequestClose: () => void;
+    currency?: Record<'Demo' | 'Real', number>;
+    accounts?: Record<'Demo' | 'Real' | 'icon', string>;
+};
 
 const account_content = ['Demo', 'Real'];
 
-const AccountPopup = ({ is_open, onRequestClose, accounts, currency }: any) => {
+const AccountPopup = ({ is_open, onRequestClose, accounts, currency }: TAccountPopupProps) => {
     const [account_type, setAccountType] = useState('Demo');
     return (
         <Modal
@@ -45,9 +52,11 @@ const AccountPopup = ({ is_open, onRequestClose, accounts, currency }: any) => {
                     <div className={styles.currency}>
                         <div>
                             <div className={styles.currencyBold}>{account_type}</div>
-                            <div className={styles.currencySmall}>{accounts[account_type]}</div>
+                            <div className={styles.currencySmall}>
+                                {accounts?.[account_type as 'Demo' | 'Real' | 'icon']}
+                            </div>
                         </div>
-                        <div className={styles.currencyBold}>{currency[account_type]} USD</div>
+                        <div className={styles.currencyBold}>{currency?.[account_type as 'Demo' | 'Real']} USD</div>
                     </div>
                 </div>
             </div>
