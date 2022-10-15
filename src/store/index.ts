@@ -1,2 +1,2 @@
-export * from './useStore'
-export * from './root-store'
+export * from './useStore';
+export * from './root-store';

@@ -5,12 +5,12 @@ import { observer } from 'mobx-react-lite';
 import Header from './components/layout';
 
 const App = () => {
-  return (
-    <>
-      <Header />
-      <TestTitle />
-    </>
-  );
+    return (
+        <>
+            <Header />
+            <TestTitle />
+        </>
+    );
 };
 
 export default observer(App);

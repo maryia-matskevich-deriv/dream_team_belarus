@@ -1,17 +1,17 @@
-import { makeAutoObservable } from "mobx";
+import { makeAutoObservable } from 'mobx';
 
 export class RootStore {
-    constructor(){
-        makeAutoObservable(this)
+    constructor() {
+        makeAutoObservable(this);
     }
 
-    hello = 'Hello from the root store'
+    hello = 'Hello from the root store';
 
     sayBye = () => {
-        this.hello = 'Bye from the root store'
-    }
+        this.hello = 'Bye from the root store';
+    };
 
     sayHello = () => {
-        this.hello = 'Hello from the root store'
-    }
+        this.hello = 'Hello from the root store';
+    };
 }
