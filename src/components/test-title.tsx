@@ -7,7 +7,7 @@ const TestTitle = () => {
 
     return (
         <div>
-            <h2 style={{ textAlign: 'center', marginTop: '300px' }}>{store.hello}</h2>
+            <h2 style={{ textAlign: 'center', marginTop: '20px' }}>{store.hello}</h2>
             <div
                 style={{
                     display: 'flex',
