@@ -1,0 +1,11 @@
+.multipliers {
+  &_paramsWrapper {
+    display: flex;
+    margin: 1rem 0;
+  }
+
+  &_buttonsWrapper {
+    display: flex;
+    gap: 1rem;
+  }
+}
