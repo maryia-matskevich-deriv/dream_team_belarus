@@ -1,11 +1,24 @@
 .multipliers {
+  &_container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem 0;
+    gap: 1rem;
+    width: 100%;
+  }
+
   &_paramsWrapper {
     display: flex;
-    margin: 1rem 0;
+    justify-content: space-around;
+
   }
 
   &_buttonsWrapper {
     display: flex;
+    justify-content: center;
     gap: 1rem;
   }
 }
+
+
+

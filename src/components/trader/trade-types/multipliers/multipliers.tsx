@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './multipliers.module.scss';
 import PurchaseButton from '../../../purchase-button';
+import StakePayoutInput from '../../../stake-payout-input';
+import CheckboxInput from '../../../checkbox-input';
 
 const Multipliers = () => {
 
@@ -8,20 +10,30 @@ const Multipliers = () => {
 // implement validation
 
 
-
     return (
-        <div>
+        <div className={styles.multipliers_container}>
             <div className={styles.multipliers_paramsWrapper}>
-                <div>Trade Params</div>
-                <div>Stake / Pay out</div>
+                <div>
+                    <div>
+                        Stake
+                        <StakePayoutInput />
+                    </div>
+                    <div>multipliers select</div>
+                </div>
+                <div>
+                    Trade Params
+                    <CheckboxInput />
+                    <CheckboxInput />
+                    <CheckboxInput />
+                </div>
             </div>
             <div className={styles.multipliers_buttonsWrapper}>
                 <PurchaseButton />
                 <PurchaseButton />
             </div>
         </div>
-)
-    ;
+    )
+        ;
 };
 
 export default Multipliers;
