@@ -1,46 +1,165 @@
-# Getting Started with Create React App
+# Deriv SmartTrader
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repository contains the static HTML, Javascript, CSS, and images content of the [Deriv SmartTrader](https://smarttrader.deriv.com) website.
 
-## Available Scripts
+![build](https://img.shields.io/circleci/build/github/deriv-com/binary-static) ![node](https://img.shields.io/badge/node-%3E%3D12.22.3-blue.svg) ![npm](https://img.shields.io/badge/npm-%3E%3D6.14.13-blue.svg) ![sass](https://img.shields.io/badge/Sass-CC6699?style=flat&logo=sass&logoColor=white)
 
-In the project directory, you can run:
+**In this document**
 
-### `npm start`
+- [Other Documents](#other-documents)
+- [Pre-installation](#pre-installation)
+- [Quickstart](#quick-start)
+- [Preview on your local machine](#preview-on-your-local-machine)
+- [Test link deployment](#test-link-deployment)
+- [Manage releases](#manage-releases)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Other Documents
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [Scripts](scripts/README.md)
+- [Javascript](src/javascript/README.md)
+- [Sass](src/sass/README.md)
+- [Templates](src/templates/README.md)
 
-### `npm test`
+## Pre-installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Before running or contribute to this project, you need to have the setup of the following packages in your environment
 
-### `npm run build`
+- Ruby, RubyGems
+- Sass (`sudo gem install sass`)
+- Node.js (12.22.3 is recommended)
+- NPM (see <https://nodejs.org/en/download/package-manager/>)
+- Grunt (`sudo npm install -g grunt-cli`)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Quickstart
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Create a new organization**
+   Create a new organization in [github.com](https://github.com/account/organizations/new?coupon=&plan=team_free)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Fork the project**
 
-### `npm run eject`
+   In order to work on your own version of the SmartTrader application, please fork the project in your newly created organization.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. **Clone using SSH**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+   ```sh
+   git clone git@github.com:<organization_name>/binary-static.git smart-trader
+   ```
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+4. **Enter project directory**
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+   ```sh
+   cd smart-trader
+   ```
 
-## Learn More
+5. **Add DSmartTrader project as your upstream**
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+   ```sh
+   git remote add upstream git@github.com:deriv-com/binary-static.git
+   ```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+6. **Install your dependencies:**
+
+   ```sh
+     npm ci
+   ```
+
+7. **To start developing:**
+
+   ```sh
+   npm run start
+   ```
+
+8. **Open the source code and start editing!**
+
+   Your site is now running at [https://localhost:443](https://localhost:443)
+
+## Preview on your local machine
+
+- To preview your changes locally, run `sudo grunt serve`
+- It will watch for Javascript or CSS changes and will rebuild on every change you make.
+- To test changes made to templates, you need to re-compile them:
+  - `grunt shell:compile_dev` to re-compile all templates.
+  - `grunt shell:compile_dev --path=about-us` to re-compile only template(s) which serve about-us path in URL.
+- To fix eslint errors run `npm run eslint`
+
+## Test link deployment
+
+You can manually deploy your test link using gh-pages with the following configurations:
+
+### Deploy to your gh-pages for the first time
+
+1.  Register your application [here](https://developers.binary.com/applications/). This will give you the ability to redirect back to your Github pages after login.
+    Use `https://YOUR_ORGANMIZATION_NAME.github.io/binary-static/en/logged_inws.html` for the Redirect URL and `https://YOUR_ORGANMIZATION_NAME.github.io/binary-static/en/redirect.html` for the Verification URL.
+
+        If you're using a custom domain, replace the Github URLs above with your domain.
+
+2.  In `src/javascript/config.js`: Insert the `Application ID` of your registered application in `user_app_id`.
+
+- **NOTE:** In order to avoid accidentally committing personal changes to this file, use `git update-index --assume-unchanged src/javascript/config.js`
+
+3. Run `grunt dev`
+
+### Deploy js/css and template changes together
+
+```sh
+grunt dev
+```
+
+### Deploy only js/css changes
+
+```sh
+grunt deploy
+```
+
+### Deploy some template changes
+
+```sh
+grunt dev --path=about-us
+```
+
+### Using sub-folders
+
+There are times that you are working on various branches at the same time, and you want to deploy/test each branch separately on your gh-pages, you can simply use `--branch=branchname` for grunt commands:
+
+- `grunt dev --branch=branchname`
+  This will deploy your changes to a sub-folder named: `br_branchname` and it can be browsed at: https://YOUR_GITHUB_USERNAME.github.io/binary-static/br_branchname/
+
+In order to remove the created folders from your gh-pages, you can use either:
+
+- `grunt dev --cleanup`: removes all `br_*` folders and deploys to the root folder.
+
+  or
+
+- `grunt shell:remove_folder --folder=br_branchname1,br_branchname2,...`: only removes the specified folder(s) from your gh-pages.
+
+  or
+
+- `grunt shell:remove_folder --keep --folder=br_branchname1,br_branchname2,...`: only keeps the specified folder(s) on your gh-pages and removes everything else. Just add the `--keep` flag.
+
+### Use a custom domain
+
+In order to use your custom domain, please put it in a file named `CNAME` inside `scripts` folder of your local clone of binary-static.
+
+## Manage releases
+
+```sh
+git tag ${RELEASE_TARGET}_vYYYYMMDD_${INTEGER} -m 'some message'
+```
+
+> `RELEASE_TARGET` could be one of **staging** or **production** for staging and production release respectively.
+
+Example:
+
+```sh
+git tag production_v20191010_0 -m 'release fixes to production'
+```
+
+Push the tag:
+
+```sh
+git push origin staging_v20191010_0
+```
+
+## Manage translations
+
+To add translation manually use [manual translation doc](scripts/README.md#Updating-the-translations)
