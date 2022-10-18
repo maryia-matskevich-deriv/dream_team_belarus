@@ -2,19 +2,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 import { withRouter } from 'react-router';
-import NetworkStatus, {
-    AccountLimits as AccountLimitsFooter,
-    EndpointNote,
-    GoToDeriv,
-    HelpCentre,
-    RegulatoryInformation,
-    ResponsibleTrading,
-    ToggleFullScreen,
-    ToggleSettings,
-} from 'App/Components/Layout/Footer';
-import LiveChat from 'App/Components/Elements/LiveChat';
 import { connect } from 'Stores/connect';
-import ServerTime from '../server-time.jsx';
 
 const FooterIconSeparator = () => <div className='footer-icon-separator' />;
 
@@ -29,25 +17,10 @@ const FooterExtensionRenderer = (footer_extension, idx) => {
     );
 };
 
-const Footer = ({
-    enableApp,
-    footer_extensions,
-    is_app_disabled,
-    is_eu,
-    is_logged_in,
-    is_route_modal_on,
-    is_settings_modal_on,
-    is_virtual,
-    disableApp,
-    toggleSettingsModal,
-    settings_extension,
-    landing_company_shortcode,
-}) => {
+const Footer = ({ footer_extensions, is_app_disabled, is_route_modal_on }) => {
     let footer_extensions_left = [];
-    let footer_extensions_right = [];
     if (footer_extensions.filter) {
         footer_extensions_left = footer_extensions.filter(footer_extension => footer_extension.position === 'left');
-        footer_extensions_right = footer_extensions.filter(footer_extension => footer_extension.position === 'right');
     }
 
     return (
@@ -61,30 +34,6 @@ const Footer = ({
                     {footer_extensions_left.map(FooterExtensionRenderer)}
                 </div>
             )}
-            <EndpointNote />
-            <NetworkStatus />
-            <ServerTime />
-            <div className='footer__links'>
-                {footer_extensions_right.map(FooterExtensionRenderer)}
-                <LiveChat />
-                <FooterIconSeparator />
-                <GoToDeriv />
-                <ResponsibleTrading />
-                {is_logged_in && <AccountLimitsFooter />}
-                {is_logged_in && !is_virtual && (
-                    <RegulatoryInformation landing_company={landing_company_shortcode} is_eu={is_eu} />
-                )}
-                <FooterIconSeparator />
-                <HelpCentre />
-                <ToggleSettings
-                    is_settings_visible={is_settings_modal_on}
-                    toggleSettings={toggleSettingsModal}
-                    disableApp={disableApp}
-                    enableApp={enableApp}
-                    settings_extension={settings_extension}
-                />
-                <ToggleFullScreen />
-            </div>
         </footer>
     );
 };

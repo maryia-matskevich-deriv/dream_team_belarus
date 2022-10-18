@@ -12,7 +12,7 @@
     },
     "platforms": {
         "trader": {
-            "name": "DTrader",
+            "name": "DTrader Air",
             "icon": "IcBrandDtrader"
         },
         "dbot": {

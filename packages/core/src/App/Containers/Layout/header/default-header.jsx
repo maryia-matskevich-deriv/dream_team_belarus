@@ -2,10 +2,17 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { DesktopWrapper, MobileWrapper } from '@deriv/components';
-import { routes, isMobile, getDecimalPlaces, getPlatformInformation, platforms } from '@deriv/shared';
+import {
+    routes,
+    isMobile,
+    getDecimalPlaces,
+    getPlatformSettings,
+    getPlatformInformation,
+    platforms,
+    DesktopWrapper,
+    MobileWrapper,
+} from './_shared.js';
 import { AccountActions, MenuLinks, PlatformSwitcher } from 'App/Components/Layout/Header';
-import platform_config from 'App/Constants/platform-config';
 import RealAccountSignup from 'App/Containers/RealAccountSignup';
 import SetAccountCurrencyModal from 'App/Containers/SetAccountCurrencyModal';
 import NewVersionNotification from 'App/Containers/new-version-notification.jsx';
@@ -13,6 +20,16 @@ import { connect } from 'Stores/connect';
 import ToggleMenuDrawer from 'App/Components/Layout/Header/toggle-menu-drawer.jsx';
 import { AccountsInfoLoader } from 'App/Components/Layout/Header/Components/Preloader';
 import TempAppSettings from 'App/Containers/Layout/temp-app-settings.jsx';
+
+const platform_config = [
+    {
+        icon: getPlatformSettings('trader').icon,
+        title: () => getPlatformSettings('trader').name,
+        name: getPlatformSettings('trader').name,
+        description: () => 'A whole new trading experience on a powerful yet easy to use platform.',
+        link_to: routes.trade,
+    },
+];
 
 const DefaultHeader = ({
     acc_switcher_disabled_message,
@@ -27,7 +44,6 @@ const DefaultHeader = ({
     disableApp,
     enableApp,
     header_extension,
-    history,
     is_acc_switcher_disabled,
     is_acc_switcher_on,
     is_app_disabled,
@@ -73,7 +89,6 @@ const DefaultHeader = ({
         return () => document.removeEventListener('IgnorePWAUpdate', removeUpdateNotification);
     }, [removeUpdateNotification]);
 
-    const onClickDeposit = () => history.push(routes.cashier_deposit);
     const filterPlatformsForClients = payload =>
         payload.filter(config => {
             if (config.link_to === routes.mt5) {
@@ -171,10 +186,10 @@ const DefaultHeader = ({
                             is_acc_switcher_on={is_acc_switcher_on}
                             is_acc_switcher_disabled={is_acc_switcher_disabled}
                             is_eu={is_eu}
+                            header_extension={header_extension}
                             is_notifications_visible={is_notifications_visible}
                             is_logged_in={is_logged_in}
                             is_virtual={is_virtual}
-                            onClickDeposit={onClickDeposit}
                             notifications_count={notifications_count}
                             toggleAccountsDialog={toggleAccountsDialog}
                             toggleNotifications={toggleNotifications}
@@ -233,7 +248,6 @@ DefaultHeader.propTypes = {
     toggleNotifications: PropTypes.func,
     is_social_signup: PropTypes.bool,
     country_standpoint: PropTypes.object,
-    history: PropTypes.object,
     is_onramp_tab_visible: PropTypes.bool,
     is_p2p_enabled: PropTypes.bool,
     is_payment_agent_transfer_visible: PropTypes.bool,

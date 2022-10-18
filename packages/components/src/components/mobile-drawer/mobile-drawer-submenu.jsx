@@ -26,7 +26,11 @@ const SubMenu = ({
     };
     return (
         <React.Fragment>
-            <div className={classNames('dc-mobile-drawer__submenu-toggle', submenu_toggle_class)} onClick={toggleMenu}>
+            <a
+                className={classNames('dc-mobile-drawer__submenu-toggle', submenu_toggle_class)}
+                href={`https://app.deriv.com${route_config_path}`}
+                target='_blank' rel="noreferrer"
+            >
                 {submenu_icon && <Icon className='dc-mobile-drawer__submenu-toggle-icon' icon={submenu_icon} />}
                 {submenu_title && (
                     <Text
@@ -40,7 +44,7 @@ const SubMenu = ({
                 {submenu_suffix_icon && (
                     <Icon className='dc-mobile-drawer__submenu-toggle-suffix-icon' icon={submenu_suffix_icon} />
                 )}
-            </div>
+            </a>
             <SubMenuList
                 collapse={toggleMenu}
                 has_subheader={has_subheader}

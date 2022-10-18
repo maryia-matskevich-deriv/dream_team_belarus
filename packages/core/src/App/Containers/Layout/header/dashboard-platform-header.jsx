@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, withRouter } from 'react-router-dom';
 import { Button, DesktopWrapper, Icon, MobileWrapper, Money, Popover, Text } from '@deriv/components';
-import { getPlatformInformation, isMobile, routes } from '@deriv/shared';
+import { getPlatformInformation, isMobile, routes } from './_shared';
 import { Localize, localize } from '@deriv/translations';
 import { PlatformSwitcher, ToggleNotifications } from 'App/Components/Layout/Header';
 import platform_config from 'App/Constants/platform-config';

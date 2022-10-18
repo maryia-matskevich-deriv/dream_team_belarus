@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Text } from '@deriv/components';
-import { BinaryLink } from '../../Routes';
 
 const MenuLinks = ({ is_logged_in, items }) => (
     <React.Fragment>
@@ -11,14 +10,13 @@ const MenuLinks = ({ is_logged_in, items }) => (
                     const item_text = item.text();
 
                     return item.login_only && item.login_only !== is_logged_in ? null : (
-                        <BinaryLink
+                        <a
                             id={item.id}
                             key={idx}
-                            to={item.link_to || undefined}
-                            onClick={item.onClick || undefined}
-                            href={item.href || undefined}
+                            href={`https://app.deriv.com${item.link_to || undefined}`}
+                            target='_blank'
                             className='header__menu-link'
-                            active_class='header__menu-link--active'
+                            active_class='header__menu-link--active' rel="noreferrer"
                         >
                             <React.Fragment>
                                 {item_text && (
@@ -28,19 +26,11 @@ const MenuLinks = ({ is_logged_in, items }) => (
                                         title={item_text}
                                         className='header__menu-link-text'
                                     >
-                                        {item.icon}
                                         {item_text}
-                                        {item.logo}
                                     </Text>
                                 )}
-                                {item.image && (
-                                    <span className='header__menu-link-text'>
-                                        {item.image}
-                                        {item.logo}
-                                    </span>
-                                )}
                             </React.Fragment>
-                        </BinaryLink>
+                        </a>
                     );
                 })}
             </div>

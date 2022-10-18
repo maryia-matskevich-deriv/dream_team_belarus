@@ -8,7 +8,6 @@ import ServerTime from 'App/Containers/server-time.jsx';
 import { BinaryLink } from 'App/Components/Routes';
 import getRoutesConfig from 'App/Constants/routes-config';
 import { changeLanguage } from 'Utils/Language';
-import LiveChat from 'App/Components/Elements/LiveChat';
 
 const MenuLink = ({
     changeCurrentLanguage,
@@ -299,7 +298,7 @@ const ToggleMenuDrawer = React.forwardRef(
                     enableApp={enableApp}
                     disableApp={disableApp}
                     title={title || title === '' ? title : localize('Menu')}
-                    livechat={is_appstore ? null : <LiveChat is_mobile_drawer />}
+                    livechat={null}
                     height='100vh'
                     width='295px'
                 >
