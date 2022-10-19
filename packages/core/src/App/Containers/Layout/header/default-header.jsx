@@ -55,11 +55,6 @@ const DefaultHeader = ({
     is_logging_in,
     is_mt5_allowed,
     is_notifications_visible,
-    is_onramp_tab_visible,
-    is_p2p_enabled,
-    is_payment_agent_transfer_visible,
-    is_payment_agent_visible,
-    is_account_transfer_visible,
     is_route_modal_on,
     is_virtual,
     location,
@@ -68,7 +63,6 @@ const DefaultHeader = ({
     notifications_count,
     openRealAccountSignup,
     platform,
-    replaceCashierMenuOnclick,
     removeNotificationMessage,
     setDarkMode,
     should_allow_authentication,
@@ -133,11 +127,11 @@ const DefaultHeader = ({
                             logoutClient={logoutClient}
                             is_dark_mode={is_dark_mode}
                             is_logged_in={is_logged_in}
-                            is_p2p_enabled={is_p2p_enabled}
-                            is_payment_agent_transfer_visible={is_payment_agent_transfer_visible}
-                            is_onramp_tab_visible={is_onramp_tab_visible}
-                            is_payment_agent_visible={is_payment_agent_visible}
-                            is_account_transfer_visible={is_account_transfer_visible}
+                            is_p2p_enabled={false}
+                            is_payment_agent_transfer_visible={false}
+                            is_onramp_tab_visible={false}
+                            is_payment_agent_visible={false}
+                            is_account_transfer_visible={false}
                             is_virtual={is_virtual}
                             toggleTheme={setDarkMode}
                             platform_header={getPlatformInformation(app_routing_history).header}
@@ -155,7 +149,6 @@ const DefaultHeader = ({
                             <div className='header__menu-left-extensions'>{header_extension}</div>
                         )}
                     </MobileWrapper>
-                    {menu_items && is_logged_in && replaceCashierMenuOnclick()}
                     <MenuLinks is_logged_in={is_logged_in} items={menu_items} />
                 </div>
                 <div
@@ -257,7 +250,7 @@ DefaultHeader.propTypes = {
     changeCurrentLanguage: PropTypes.func,
 };
 
-export default connect(({ client, common, ui, menu, modules, notifications }) => ({
+export default connect(({ client, common, ui, menu, notifications }) => ({
     changeCurrentLanguage: common.changeCurrentLanguage,
     acc_switcher_disabled_message: ui.account_switcher_disabled_message,
     account_status: client.account_status,
@@ -284,18 +277,12 @@ export default connect(({ client, common, ui, menu, modules, notifications }) =>
     is_mt5_allowed: client.is_mt5_allowed,
     is_dxtrade_allowed: client.is_dxtrade_allowed,
     is_notifications_visible: notifications.is_notifications_visible,
-    is_p2p_enabled: modules.cashier.general_store.is_p2p_enabled,
-    is_payment_agent_transfer_visible: modules.cashier.payment_agent_transfer.is_payment_agent_transfer_visible,
-    is_onramp_tab_visible: modules.cashier.onramp.is_onramp_tab_visible,
-    is_payment_agent_visible: modules.cashier.payment_agent.is_payment_agent_visible,
-    is_account_transfer_visible: modules.cashier.account_transfer.is_account_transfer_visible,
     is_route_modal_on: ui.is_route_modal_on,
     is_virtual: client.is_virtual,
     logoutClient: client.logout,
     menu_items: menu.extensions,
     notifications_count: notifications.filtered_notifications.length,
     openRealAccountSignup: ui.openRealAccountSignup,
-    replaceCashierMenuOnclick: modules.cashier.general_store.replaceCashierMenuOnclick,
     platform: common.platform,
     removeNotificationMessage: notifications.removeNotificationMessage,
     setDarkMode: ui.setDarkMode,

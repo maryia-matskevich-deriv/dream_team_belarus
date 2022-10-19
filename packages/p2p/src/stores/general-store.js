@@ -296,8 +296,6 @@ export default class GeneralStore extends BaseStore {
                 this.setIsBlocked(false);
                 this.setIsP2pBlockedForPa(false);
             } else if (get_account_status.risk_classification === 'high') {
-                const is_cashier_locked = hasStatuses(['cashier_locked']);
-
                 const is_fully_authenticated = hasStatuses(['age_verification', 'authenticated']);
                 const is_not_fully_authenticated = !hasStatuses(['age_verification', 'authenticated']);
 
@@ -312,7 +310,6 @@ export default class GeneralStore extends BaseStore {
                     // First priority: Send user to Financial Assessment if they have to submit it.
                     this.setIsHighRiskFullyAuthedWithoutFa(true);
                 } else if (
-                    is_cashier_locked ||
                     is_not_fully_authenticated ||
                     is_fully_authed_but_poi_expired ||
                     is_not_fully_authenticated_and_fa_not_completed

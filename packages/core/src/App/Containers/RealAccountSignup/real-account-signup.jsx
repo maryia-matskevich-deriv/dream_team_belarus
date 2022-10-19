@@ -82,9 +82,8 @@ const WizardHeading = ({ real_account_signup_target, currency, is_isle_of_man_re
 const RealAccountSignup = ({
     available_crypto_currencies,
     closeRealAccountSignup,
-    continueRoute,
     currency,
-    deposit_target,
+    deposit_target = '',
     has_fiat,
     has_real_account,
     country_standpoint,
@@ -95,11 +94,9 @@ const RealAccountSignup = ({
     is_eu,
     is_real_acc_signup_on,
     real_account_signup_target,
-    replaceCashierMenuOnclick,
     routing_history,
-    setIsDeposit,
     setParams,
-    should_show_all_available_currencies,
+    should_show_all_available_currencies = false,
     state_index,
     state_value,
     deposit_real_account_signup_target,
@@ -162,8 +159,8 @@ const RealAccountSignup = ({
                     deposit_real_account_signup_target={local_props.deposit_real_account_signup_target}
                     deposit_target={local_props.deposit_target}
                     closeRealAccountSignup={closeRealAccountSignup}
-                    continueRoute={continueRoute}
-                    setIsDeposit={setIsDeposit}
+                    continueRoute={false}
+                    setIsDeposit={() => {}}
                     history={history}
                 />
             ),
@@ -221,8 +218,8 @@ const RealAccountSignup = ({
                     deposit_real_account_signup_target={local_props.deposit_real_account_signup_target}
                     deposit_target={local_props.deposit_target}
                     closeRealAccountSignup={closeRealAccountSignup}
-                    continueRoute={continueRoute}
-                    setIsDeposit={setIsDeposit}
+                    continueRoute={false}
+                    setIsDeposit={() => {}}
                     history={history}
                 />
             ),
@@ -264,7 +261,6 @@ const RealAccountSignup = ({
     };
 
     const closeModalThenOpenCashier = () => {
-        replaceCashierMenuOnclick();
         closeRealAccountSignup();
         history.push(routes.cashier_deposit);
     };
@@ -328,7 +324,6 @@ const RealAccountSignup = ({
     }, [is_from_restricted_country, is_real_acc_signup_on]);
 
     const closeModal = e => {
-        replaceCashierMenuOnclick();
         // Do not close modal on external link and popover click event
         if (
             e?.target.getAttribute('rel') === 'noopener noreferrer' ||
@@ -491,25 +486,19 @@ const RealAccountSignup = ({
     );
 };
 
-export default connect(({ ui, client, common, modules }) => ({
+export default connect(({ ui, client, common }) => ({
     available_crypto_currencies: client.available_crypto_currencies,
     has_fiat: client.has_fiat,
     has_real_account: client.has_active_real_account,
-    continueRoute: modules.cashier.general_store.continueRoute,
     currency: client.currency,
-    deposit_target: modules.cashier.general_store.deposit_target,
-    is_eu: client.is_eu,
     country_standpoint: client.country_standpoint,
     is_real_acc_signup_on: ui.is_real_acc_signup_on,
     real_account_signup_target: ui.real_account_signup_target,
-    replaceCashierMenuOnclick: modules.cashier.general_store.replaceCashierMenuOnclick,
     closeRealAccountSignup: ui.closeRealAccountSignup,
     setParams: ui.setRealAccountSignupParams,
     is_from_restricted_country: client.is_from_restricted_country,
     is_isle_of_man_residence: client.residence === 'im', // TODO: [deriv-eu] refactor this once more residence checks are required
     is_belgium_residence: client.residence === 'be', // TODO: [deriv-eu] refactor this once more residence checks are required
-    setIsDeposit: modules.cashier.general_store.setIsDeposit,
-    should_show_all_available_currencies: modules.cashier.general_store.should_show_all_available_currencies,
     state_value: ui.real_account_signup,
     routing_history: common.app_routing_history,
     deposit_real_account_signup_target: ui.deposit_real_account_signup_target,

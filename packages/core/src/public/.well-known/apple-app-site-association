@@ -18,13 +18,6 @@
                 "paths": [
                     "/redirect/derivgo"
                 ]
-            },
-            {
-                "appID": "36S5Q8S4V5.com.deriv.dp2p",
-                "paths": [
-                    "/cashier/p2p",
-                    "/redirect/p2p"
-                ]
             }
         ]
     }

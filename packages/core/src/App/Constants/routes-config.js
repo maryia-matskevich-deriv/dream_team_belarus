@@ -35,14 +35,7 @@ const Account = React.lazy(() =>
     })
 );
 
-const Cashier = React.lazy(() =>
-    moduleLoader(() => {
-        // eslint-disable-next-line import/no-unresolved
-        return import(/* webpackChunkName: "cashier" */ '@deriv/cashier');
-    })
-);
-
-const getModules = ({ is_appstore }, is_social_signup) => {
+const getModules = is_social_signup => {
     const modules = [
         {
             path: routes.reports,
@@ -179,7 +172,7 @@ const getModules = ({ is_appstore }, is_social_signup) => {
         },
         {
             path: routes.cashier,
-            component: Cashier,
+            component: 'Cashier',
             is_modal: true,
             is_authenticated: true,
             getTitle: () => localize('Cashier'),
@@ -187,44 +180,44 @@ const getModules = ({ is_appstore }, is_social_signup) => {
             routes: [
                 {
                     path: routes.cashier_deposit,
-                    component: Cashier,
+                    component: 'Cashier',
                     getTitle: () => localize('Deposit'),
                     icon_component: 'IcCashierAdd',
                     default: true,
                 },
                 {
                     path: routes.cashier_withdrawal,
-                    component: Cashier,
+                    component: 'Cashier',
                     getTitle: () => localize('Withdrawal'),
                     icon_component: 'IcCashierMinus',
                 },
                 {
                     path: routes.cashier_pa,
-                    component: Cashier,
+                    component: 'Cashier',
                     getTitle: () => localize('Payment agents'),
                     icon_component: 'IcPaymentAgent',
                 },
                 {
                     path: routes.cashier_acc_transfer,
-                    component: Cashier,
+                    component: 'Cashier',
                     getTitle: () => localize('Transfer'),
                     icon_component: 'IcAccountTransfer',
                 },
                 {
                     path: routes.cashier_pa_transfer,
-                    component: Cashier,
+                    component: 'Cashier',
                     getTitle: () => localize('Transfer to client'),
                     icon_component: 'IcAccountTransfer',
                 },
                 {
                     path: routes.cashier_p2p,
-                    component: Cashier,
+                    component: 'Cashier',
                     getTitle: () => localize('Deriv P2P'),
                     icon_component: 'IcDp2p',
                 },
                 {
                     path: routes.cashier_p2p_verification,
-                    component: Cashier,
+                    component: 'Cashier',
                     getTitle: () => localize('Deriv P2P'),
                     icon_component: 'IcDp2p',
                     is_invisible: true,
@@ -232,13 +225,13 @@ const getModules = ({ is_appstore }, is_social_signup) => {
                 {
                     id: 'gtm-onramp-tab',
                     path: routes.cashier_onramp,
-                    component: Cashier,
+                    component: 'Cashier',
                     getTitle: () => localize('Fiat onramp'),
                     icon_component: 'IcCashierOnRamp',
                 },
                 {
                     path: routes.cashier_crypto_transactions,
-                    component: Cashier,
+                    component: 'Cashier',
                     is_invisible: true,
                 },
             ],

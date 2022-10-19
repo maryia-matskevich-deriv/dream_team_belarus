@@ -10,27 +10,48 @@ const MenuLinks = ({ is_logged_in, items }) => (
                     const item_text = item.text();
 
                     return item.login_only && item.login_only !== is_logged_in ? null : (
-                        <a
-                            id={item.id}
-                            key={idx}
-                            href={`https://app.deriv.com${item.link_to || undefined}`}
-                            target='_blank'
-                            className='header__menu-link'
-                            active_class='header__menu-link--active' rel="noreferrer"
-                        >
-                            <React.Fragment>
-                                {item_text && (
+                        <>
+                            <a
+                                id={item.id}
+                                key={idx}
+                                href={`https://app.deriv.com${item.link_to || undefined}`}
+                                target='_blank'
+                                className='header__menu-link'
+                                active_class='header__menu-link--active'
+                                rel='noreferrer'
+                            >
+                                <React.Fragment>
+                                    {item_text && (
+                                        <Text
+                                            size='m'
+                                            line_height='xs'
+                                            title={item_text}
+                                            className='header__menu-link-text'
+                                        >
+                                            {item_text}
+                                        </Text>
+                                    )}
+                                </React.Fragment>
+                            </a>
+                            <a
+                                href={`https://app.deriv.com/cashier`}
+                                target='_blank'
+                                className='header__menu-link'
+                                active_class='header__menu-link--active'
+                                rel='noreferrer'
+                            >
+                                <React.Fragment>
                                     <Text
                                         size='m'
                                         line_height='xs'
-                                        title={item_text}
+                                        title={'Cashier'}
                                         className='header__menu-link-text'
                                     >
-                                        {item_text}
+                                        Cashier
                                     </Text>
-                                )}
-                            </React.Fragment>
-                        </a>
+                                </React.Fragment>
+                            </a>
+                        </>
                     );
                 })}
             </div>

@@ -48,8 +48,6 @@ export const getPathname = () => {
             return platform_name.DTrader;
         case 'reports':
             return 'Reports';
-        case 'cashier':
-            return 'Cashier';
         default:
             return platform_name.SmartTrader;
     }

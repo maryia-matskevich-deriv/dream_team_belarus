@@ -220,8 +220,9 @@ export default class NotificationStore extends BaseStore {
             is_poi_dob_mismatch,
             has_restricted_mt5_account,
         } = this.root_store.client;
-        const { is_p2p_visible, p2p_completed_orders } = this.root_store.modules.cashier.general_store;
-        const { is_10k_withdrawal_limit_reached } = this.root_store.modules.cashier.withdraw;
+        const is_p2p_visible = false;
+        const p2p_completed_orders = false;
+        const is_10k_withdrawal_limit_reached = false;
         const { current_language, selected_contract_type } = this.root_store.common;
         const malta_account = landing_company_shortcode === 'maltainvest';
         const virtual_account = landing_company_shortcode === 'virtual';
