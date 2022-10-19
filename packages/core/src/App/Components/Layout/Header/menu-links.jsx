@@ -1,7 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Text } from '@deriv/components';
-import { BinaryLink } from '../../Routes';
 
 const MenuLinks = ({ is_logged_in, items }) => (
     <React.Fragment>
@@ -11,36 +10,48 @@ const MenuLinks = ({ is_logged_in, items }) => (
                     const item_text = item.text();
 
                     return item.login_only && item.login_only !== is_logged_in ? null : (
-                        <BinaryLink
-                            id={item.id}
-                            key={idx}
-                            to={item.link_to || undefined}
-                            onClick={item.onClick || undefined}
-                            href={item.href || undefined}
-                            className='header__menu-link'
-                            active_class='header__menu-link--active'
-                        >
-                            <React.Fragment>
-                                {item_text && (
+                        <>
+                            <a
+                                id={item.id}
+                                key={idx}
+                                href={`https://app.deriv.com${item.link_to || undefined}`}
+                                target='_blank'
+                                className='header__menu-link'
+                                active_class='header__menu-link--active'
+                                rel='noreferrer'
+                            >
+                                <React.Fragment>
+                                    {item_text && (
+                                        <Text
+                                            size='m'
+                                            line_height='xs'
+                                            title={item_text}
+                                            className='header__menu-link-text'
+                                        >
+                                            {item_text}
+                                        </Text>
+                                    )}
+                                </React.Fragment>
+                            </a>
+                            <a
+                                href={`https://app.deriv.com/cashier`}
+                                target='_blank'
+                                className='header__menu-link'
+                                active_class='header__menu-link--active'
+                                rel='noreferrer'
+                            >
+                                <React.Fragment>
                                     <Text
                                         size='m'
                                         line_height='xs'
-                                        title={item_text}
+                                        title={'Cashier'}
                                         className='header__menu-link-text'
                                     >
-                                        {item.icon}
-                                        {item_text}
-                                        {item.logo}
+                                        Cashier
                                     </Text>
-                                )}
-                                {item.image && (
-                                    <span className='header__menu-link-text'>
-                                        {item.image}
-                                        {item.logo}
-                                    </span>
-                                )}
-                            </React.Fragment>
-                        </BinaryLink>
+                                </React.Fragment>
+                            </a>
+                        </>
                     );
                 })}
             </div>

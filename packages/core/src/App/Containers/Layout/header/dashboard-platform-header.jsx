@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import { useHistory, withRouter } from 'react-router-dom';
 import { Button, DesktopWrapper, Icon, MobileWrapper, Money, Popover, Text } from '@deriv/components';
-import { getPlatformInformation, isMobile, routes } from '@deriv/shared';
+import { getPlatformInformation, isMobile, routes } from './_shared';
 import { Localize, localize } from '@deriv/translations';
 import { PlatformSwitcher, ToggleNotifications } from 'App/Components/Layout/Header';
 import platform_config from 'App/Constants/platform-config';
@@ -106,11 +106,11 @@ const DashboardPlatformHeader = ({
     is_logged_in,
     is_mt5_allowed,
     is_notifications_visible,
-    is_onramp_tab_visible,
-    is_p2p_enabled,
-    is_payment_agent_transfer_visible,
-    is_payment_agent_visible,
-    is_account_transfer_visible,
+    is_onramp_tab_visible = false,
+    is_p2p_enabled = false,
+    is_payment_agent_transfer_visible = false,
+    is_payment_agent_visible = false,
+    is_account_transfer_visible = false,
     is_settings_modal_on,
     is_virtual,
     location,

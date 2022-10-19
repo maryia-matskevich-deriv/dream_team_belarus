@@ -181,7 +181,6 @@ const BinarySocketGeneral = (() => {
             case 'InvalidToken':
                 if (
                     [
-                        'cashier',
                         'paymentagent_withdraw',
                         'reset_password',
                         'trading_platform_password_reset',

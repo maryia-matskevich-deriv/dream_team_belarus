@@ -39,7 +39,6 @@ const getTranslatableFiles = () => {
         'account',
         // TODO: add appstore package once it's done and merged
         // 'appstore',
-        'cashier',
         'core',
         'cfd',
         'trader',

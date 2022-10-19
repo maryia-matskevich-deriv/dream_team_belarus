@@ -8,7 +8,6 @@ import ServerTime from 'App/Containers/server-time.jsx';
 import { BinaryLink } from 'App/Components/Routes';
 import getRoutesConfig from 'App/Constants/routes-config';
 import { changeLanguage } from 'Utils/Language';
-import LiveChat from 'App/Components/Elements/LiveChat';
 
 const MenuLink = ({
     changeCurrentLanguage,
@@ -86,11 +85,11 @@ const ToggleMenuDrawer = React.forwardRef(
             enableApp,
             is_dark_mode,
             is_logged_in,
-            is_onramp_tab_visible,
-            is_p2p_enabled,
-            is_payment_agent_transfer_visible,
-            is_payment_agent_visible,
-            is_account_transfer_visible,
+            is_onramp_tab_visible = false,
+            is_p2p_enabled = false,
+            is_payment_agent_transfer_visible = false,
+            is_payment_agent_visible = false,
+            is_account_transfer_visible = false,
             is_virtual,
             logoutClient,
             platform_switcher,
@@ -299,7 +298,7 @@ const ToggleMenuDrawer = React.forwardRef(
                     enableApp={enableApp}
                     disableApp={disableApp}
                     title={title || title === '' ? title : localize('Menu')}
-                    livechat={is_appstore ? null : <LiveChat is_mobile_drawer />}
+                    livechat={null}
                     height='100vh'
                     width='295px'
                 >

@@ -14,14 +14,7 @@ import {
     Text,
     useOnClickOutside,
 } from '@deriv/components';
-import {
-    routes,
-    formatMoney,
-    getCFDAccount,
-    getAccountTypeFields,
-    getPlatformSettings,
-    CFD_PLATFORMS,
-} from '@deriv/shared';
+import { routes, formatMoney, getCFDAccount, getPlatformSettings, CFD_PLATFORMS } from '@deriv/shared';
 import { localize, Localize } from '@deriv/translations';
 import { getAccountTitle } from 'App/Containers/RealAccountSignup/helpers/constants';
 import { connect } from 'Stores/connect';
@@ -428,24 +421,12 @@ const AccountSwitcher = props => {
         return total;
     };
 
-    const isRealMT5AddDisabled = sub_account_type => {
-        // disabling synthetic account creation for MLT/MF users
-        if (props.standpoint.malta && sub_account_type === 'synthetic') return true;
-        if (props.is_eu) {
-            const account = getAccountTypeFields({ category: 'real', type: sub_account_type });
-            return props.isAccountOfTypeDisabled(account?.account_type);
-        }
-
-        return !props.has_active_real_account;
+    const isRealMT5AddDisabled = () => {
+        return true;
     };
 
-    const isRealDXTradeAddDisabled = sub_account_type => {
-        if (props.is_eu) {
-            const account = getAccountTypeFields({ category: 'real', type: sub_account_type });
-            return props.isAccountOfTypeDisabled(account?.account_type);
-        }
-
-        return !props.has_active_real_account;
+    const isRealDXTradeAddDisabled = () => {
+        return true;
     };
 
     if (!props.is_logged_in) return false;
@@ -486,17 +467,12 @@ const AccountSwitcher = props => {
         return localize('Total assets in your Deriv real accounts.');
     };
 
-    const isMT5Allowed = account_type => {
-        if (!props.is_mt5_allowed) return false;
-
-        if (account_type === 'demo') {
-            return !!getDemoMT5().length || !!getRemainingDemoMT5().length;
-        }
-        return !!getRealMT5().length || !!getRemainingRealMT5().length;
+    const isMT5Allowed = () => {
+        return false;
     };
 
     const isDxtradeAllowed = () => {
-        return props.is_dxtrade_allowed;
+        return false;
     };
 
     const canResetBalance = account => {

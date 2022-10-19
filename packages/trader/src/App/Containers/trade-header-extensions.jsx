@@ -11,13 +11,11 @@ const TradeHeaderExtensions = props => {
     const {
         disableApp,
         enableApp,
-        onMountCashier,
         onMountPositions,
         onPositionsCancel,
         onPositionsRemove,
         onPositionsSell,
         populateHeaderExtensions,
-        setAccountSwitchListener,
         store,
     } = props;
 
@@ -83,8 +81,6 @@ const TradeHeaderExtensions = props => {
                 if (props_ref.current.is_logged_in) {
                     await WS.wait('authorize');
                     onMountPositions();
-                    onMountCashier(true);
-                    setAccountSwitchListener();
                 }
             }
 
@@ -96,15 +92,7 @@ const TradeHeaderExtensions = props => {
         return () => {
             populateHeaderExtensions(null);
         };
-    }, [
-        onMountCashier,
-        onMountPositions,
-        populateHeader,
-        populateHeaderExtensions,
-        setAccountSwitchListener,
-        store,
-        show_positions_toggle,
-    ]);
+    }, [onMountPositions, populateHeader, populateHeaderExtensions, store, show_positions_toggle]);
 
     React.useEffect(() => {
         populateHeader();
@@ -123,7 +111,6 @@ TradeHeaderExtensions.propTypes = {
     onPositionsRemove: PropTypes.func,
     onPositionsSell: PropTypes.func,
     populateHeaderExtensions: PropTypes.func,
-    setAccountSwitchListener: PropTypes.func,
     store: PropTypes.object,
 };
 
@@ -135,7 +122,6 @@ export default connect(({ client, modules, ui, portfolio }) => ({
     positions_error: portfolio.error,
     onPositionsRemove: portfolio.removePositionById,
     onPositionsCancel: portfolio.onClickCancel,
-    onMountCashier: modules.cashier.general_store.onMountCommon,
     onMountPositions: portfolio.onMount,
     active_positions_count: portfolio.active_positions_count,
     trade_contract_type: modules.trade.contract_type,
@@ -144,5 +130,4 @@ export default connect(({ client, modules, ui, portfolio }) => ({
     enableApp: ui.enableApp,
     populateHeaderExtensions: ui.populateHeaderExtensions,
     toggleUnsupportedContractModal: ui.toggleUnsupportedContractModal,
-    setAccountSwitchListener: modules.cashier.general_store.setAccountSwitchListener,
 }))(TradeHeaderExtensions);

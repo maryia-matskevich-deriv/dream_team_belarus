@@ -1,12 +1,10 @@
 import * as PropTypes from 'prop-types';
 import React from 'react';
 import { Button, DesktopWrapper, Icon, MobileWrapper, Popover } from '@deriv/components';
-import { routes, formatMoney, PlatformContext, moduleLoader } from '@deriv/shared';
+import { formatMoney, PlatformContext, moduleLoader } from '@deriv/shared';
 import { localize, Localize } from '@deriv/translations';
 import { LoginButton } from './login-button.jsx';
 import { SignupButton } from './signup-button.jsx';
-import ToggleNotifications from './toggle-notifications.jsx';
-import { BinaryLink } from '../../Routes';
 import 'Sass/app/_common/components/account-switcher.scss';
 
 const AccountInfo = React.lazy(() =>
@@ -30,13 +28,9 @@ const AccountActions = React.memo(
         is_acc_switcher_disabled,
         is_eu,
         is_logged_in,
-        is_notifications_visible,
         is_virtual,
-        notifications_count,
-        onClickDeposit,
         openRealAccountSignup,
         toggleAccountsDialog,
-        toggleNotifications,
     }) => {
         const { is_appstore } = React.useContext(PlatformContext);
 
@@ -44,11 +38,6 @@ const AccountActions = React.memo(
             return (
                 <React.Fragment>
                     <MobileWrapper>
-                        <ToggleNotifications
-                            count={notifications_count}
-                            is_visible={is_notifications_visible}
-                            toggleDialog={toggleNotifications}
-                        />
                         <React.Suspense fallback={<div />}>
                             <AccountInfo
                                 acc_switcher_disabled_message={acc_switcher_disabled_message}
@@ -69,13 +58,6 @@ const AccountActions = React.memo(
                         </React.Suspense>
                     </MobileWrapper>
                     <DesktopWrapper>
-                        <ToggleNotifications
-                            count={notifications_count}
-                            is_visible={is_notifications_visible}
-                            toggleDialog={toggleNotifications}
-                            tooltip_message={<Localize i18n_default_text='View notifications' />}
-                            should_disable_pointer_events
-                        />
                         <Popover
                             classNameBubble='account-settings-toggle__tooltip'
                             alignment='bottom'
@@ -83,9 +65,13 @@ const AccountActions = React.memo(
                             should_disable_pointer_events
                             zIndex={9999}
                         >
-                            <BinaryLink className='account-settings-toggle' to={routes.personal_details}>
+                            <a
+                                className='account-settings-toggle'
+                                href={'https://app.deriv.com/account/personal-details'}
+                                target='_blank' rel="noreferrer"
+                            >
                                 <Icon icon='IcUserOutline' />
-                            </BinaryLink>
+                            </a>
                         </Popover>
                         <React.Suspense fallback={<div />}>
                             <AccountInfo
@@ -115,13 +101,13 @@ const AccountActions = React.memo(
                             </div>
                         )}
                         {currency && (
-                            <Button
-                                className='acc-info__button'
-                                has_effect
-                                text={localize('Deposit')}
-                                onClick={onClickDeposit}
-                                primary
-                            />
+                            <a
+                                className='account-settings-toggle'
+                                href={'https://app.deriv.com/cashier/deposit'}
+                                target='_blank' rel="noreferrer"
+                            >
+                                <Button className='acc-info__button' has_effect text={localize('Deposit')} primary />
+                            </a>
                         )}
                     </DesktopWrapper>
                 </React.Fragment>
@@ -153,10 +139,8 @@ AccountActions.propTypes = {
     is_notifications_visible: PropTypes.any,
     is_virtual: PropTypes.any,
     notifications_count: PropTypes.any,
-    onClickDeposit: PropTypes.func,
     openRealAccountSignup: PropTypes.func,
     toggleAccountsDialog: PropTypes.any,
-    toggleNotifications: PropTypes.any,
 };
 
 export { AccountActions };

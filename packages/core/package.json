@@ -97,9 +97,6 @@
     "dependencies": {
         "@babel/polyfill": "^7.4.4",
         "@deriv/account": "^1.0.0",
-        "@deriv/appstore": "^0.0.4",
-        "@deriv/bot-web-ui": "^1.0.0",
-        "@deriv/cashier": "^1.0.0",
         "@deriv/cfd": "^1.0.0",
         "@deriv/components": "^1.0.0",
         "@deriv/deriv-api": "^1.0.8",
@@ -109,7 +106,6 @@
         "@deriv/shared": "^1.0.0",
         "@deriv/trader": "^3.8.0",
         "@deriv/translations": "^1.0.0",
-        "@livechat/customer-sdk": "^2.0.4",
         "acorn": "^6.1.1",
         "babel-polyfill": "^6.26.0",
         "canvas-toBlob": "^1.0.0",

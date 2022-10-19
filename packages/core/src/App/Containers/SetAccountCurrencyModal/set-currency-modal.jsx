@@ -9,7 +9,7 @@ import 'Sass/set-currency-modal.scss';
 const SetAccountCurrencyModal = ({
     is_visible,
     is_virtual,
-    should_set_currency_modal_title_change,
+    should_set_currency_modal_title_change = false,
     setCurrency,
     toggleModal,
 }) => (
@@ -60,10 +60,9 @@ SetAccountCurrencyModal.propTypes = {
     toggleModal: PropTypes.func,
 };
 
-export default connect(({ client, modules, ui }) => ({
+export default connect(({ client, ui }) => ({
     is_virtual: client.is_virtual,
     is_visible: ui.is_set_currency_modal_visible,
-    should_set_currency_modal_title_change: modules.cashier.general_store.should_set_currency_modal_title_change,
     setCurrency: ui.openRealAccountSignup,
     toggleModal: ui.toggleSetCurrencyModal,
 }))(SetAccountCurrencyModal);

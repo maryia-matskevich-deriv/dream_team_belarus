@@ -17,7 +17,6 @@ import {
     useOnLoadTranslation,
 } from '@deriv/shared';
 import { initializeTranslations, getLanguage } from '@deriv/translations';
-import { CashierStore } from '@deriv/cashier';
 import WS from 'Services/ws-methods';
 import { MobxContentProvider } from 'Stores/connect';
 import SmartTraderIFrame from 'Modules/SmartTraderIFrame';
@@ -45,8 +44,7 @@ const AppWithoutTranslation = ({ root_store }) => {
     const has_base = /^\/(br_)/.test(l.pathname);
     const [is_translation_loaded] = useOnLoadTranslation();
     const initCashierStore = () => {
-        root_store.modules.attachModule('cashier', new CashierStore({ root_store, WS }));
-        root_store.modules.cashier.general_store.init();
+        root_store.modules.attachModule('cashier', { root_store, WS });
     };
     // TODO: investigate the order of cashier store initialization
     // eslint-disable-next-line react-hooks/exhaustive-deps

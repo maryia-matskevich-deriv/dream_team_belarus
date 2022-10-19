@@ -2,10 +2,17 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { DesktopWrapper, MobileWrapper } from '@deriv/components';
-import { routes, isMobile, getDecimalPlaces, getPlatformInformation, platforms } from '@deriv/shared';
+import {
+    routes,
+    isMobile,
+    getDecimalPlaces,
+    getPlatformSettings,
+    getPlatformInformation,
+    platforms,
+    DesktopWrapper,
+    MobileWrapper,
+} from './_shared.js';
 import { AccountActions, MenuLinks, PlatformSwitcher } from 'App/Components/Layout/Header';
-import platform_config from 'App/Constants/platform-config';
 import RealAccountSignup from 'App/Containers/RealAccountSignup';
 import SetAccountCurrencyModal from 'App/Containers/SetAccountCurrencyModal';
 import NewVersionNotification from 'App/Containers/new-version-notification.jsx';
@@ -13,6 +20,16 @@ import { connect } from 'Stores/connect';
 import ToggleMenuDrawer from 'App/Components/Layout/Header/toggle-menu-drawer.jsx';
 import { AccountsInfoLoader } from 'App/Components/Layout/Header/Components/Preloader';
 import TempAppSettings from 'App/Containers/Layout/temp-app-settings.jsx';
+
+const platform_config = [
+    {
+        icon: getPlatformSettings('trader').icon,
+        title: () => getPlatformSettings('trader').name,
+        name: getPlatformSettings('trader').name,
+        description: () => 'A whole new trading experience on a powerful yet easy to use platform.',
+        link_to: routes.trade,
+    },
+];
 
 const DefaultHeader = ({
     acc_switcher_disabled_message,
@@ -27,7 +44,6 @@ const DefaultHeader = ({
     disableApp,
     enableApp,
     header_extension,
-    history,
     is_acc_switcher_disabled,
     is_acc_switcher_on,
     is_app_disabled,
@@ -39,11 +55,6 @@ const DefaultHeader = ({
     is_logging_in,
     is_mt5_allowed,
     is_notifications_visible,
-    is_onramp_tab_visible,
-    is_p2p_enabled,
-    is_payment_agent_transfer_visible,
-    is_payment_agent_visible,
-    is_account_transfer_visible,
     is_route_modal_on,
     is_virtual,
     location,
@@ -52,7 +63,6 @@ const DefaultHeader = ({
     notifications_count,
     openRealAccountSignup,
     platform,
-    replaceCashierMenuOnclick,
     removeNotificationMessage,
     setDarkMode,
     should_allow_authentication,
@@ -73,7 +83,6 @@ const DefaultHeader = ({
         return () => document.removeEventListener('IgnorePWAUpdate', removeUpdateNotification);
     }, [removeUpdateNotification]);
 
-    const onClickDeposit = () => history.push(routes.cashier_deposit);
     const filterPlatformsForClients = payload =>
         payload.filter(config => {
             if (config.link_to === routes.mt5) {
@@ -118,11 +127,11 @@ const DefaultHeader = ({
                             logoutClient={logoutClient}
                             is_dark_mode={is_dark_mode}
                             is_logged_in={is_logged_in}
-                            is_p2p_enabled={is_p2p_enabled}
-                            is_payment_agent_transfer_visible={is_payment_agent_transfer_visible}
-                            is_onramp_tab_visible={is_onramp_tab_visible}
-                            is_payment_agent_visible={is_payment_agent_visible}
-                            is_account_transfer_visible={is_account_transfer_visible}
+                            is_p2p_enabled={false}
+                            is_payment_agent_transfer_visible={false}
+                            is_onramp_tab_visible={false}
+                            is_payment_agent_visible={false}
+                            is_account_transfer_visible={false}
                             is_virtual={is_virtual}
                             toggleTheme={setDarkMode}
                             platform_header={getPlatformInformation(app_routing_history).header}
@@ -140,7 +149,6 @@ const DefaultHeader = ({
                             <div className='header__menu-left-extensions'>{header_extension}</div>
                         )}
                     </MobileWrapper>
-                    {menu_items && is_logged_in && replaceCashierMenuOnclick()}
                     <MenuLinks is_logged_in={is_logged_in} items={menu_items} />
                 </div>
                 <div
@@ -171,10 +179,10 @@ const DefaultHeader = ({
                             is_acc_switcher_on={is_acc_switcher_on}
                             is_acc_switcher_disabled={is_acc_switcher_disabled}
                             is_eu={is_eu}
+                            header_extension={header_extension}
                             is_notifications_visible={is_notifications_visible}
                             is_logged_in={is_logged_in}
                             is_virtual={is_virtual}
-                            onClickDeposit={onClickDeposit}
                             notifications_count={notifications_count}
                             toggleAccountsDialog={toggleAccountsDialog}
                             toggleNotifications={toggleNotifications}
@@ -233,7 +241,6 @@ DefaultHeader.propTypes = {
     toggleNotifications: PropTypes.func,
     is_social_signup: PropTypes.bool,
     country_standpoint: PropTypes.object,
-    history: PropTypes.object,
     is_onramp_tab_visible: PropTypes.bool,
     is_p2p_enabled: PropTypes.bool,
     is_payment_agent_transfer_visible: PropTypes.bool,
@@ -243,7 +250,7 @@ DefaultHeader.propTypes = {
     changeCurrentLanguage: PropTypes.func,
 };
 
-export default connect(({ client, common, ui, menu, modules, notifications }) => ({
+export default connect(({ client, common, ui, menu, notifications }) => ({
     changeCurrentLanguage: common.changeCurrentLanguage,
     acc_switcher_disabled_message: ui.account_switcher_disabled_message,
     account_status: client.account_status,
@@ -270,18 +277,12 @@ export default connect(({ client, common, ui, menu, modules, notifications }) =>
     is_mt5_allowed: client.is_mt5_allowed,
     is_dxtrade_allowed: client.is_dxtrade_allowed,
     is_notifications_visible: notifications.is_notifications_visible,
-    is_p2p_enabled: modules.cashier.general_store.is_p2p_enabled,
-    is_payment_agent_transfer_visible: modules.cashier.payment_agent_transfer.is_payment_agent_transfer_visible,
-    is_onramp_tab_visible: modules.cashier.onramp.is_onramp_tab_visible,
-    is_payment_agent_visible: modules.cashier.payment_agent.is_payment_agent_visible,
-    is_account_transfer_visible: modules.cashier.account_transfer.is_account_transfer_visible,
     is_route_modal_on: ui.is_route_modal_on,
     is_virtual: client.is_virtual,
     logoutClient: client.logout,
     menu_items: menu.extensions,
     notifications_count: notifications.filtered_notifications.length,
     openRealAccountSignup: ui.openRealAccountSignup,
-    replaceCashierMenuOnclick: modules.cashier.general_store.replaceCashierMenuOnclick,
     platform: common.platform,
     removeNotificationMessage: notifications.removeNotificationMessage,
     setDarkMode: ui.setDarkMode,
