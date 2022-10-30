@@ -1,5 +1,5 @@
 import React from 'react';
-import { localize, Localize } from '../../translations';
+import { localize, Localize } from 'translations';
 
 export const contractSold = (currency, sold_for, Money) => ({
     key: 'contract_sold',

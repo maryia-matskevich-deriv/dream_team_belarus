@@ -1,6 +1,6 @@
 import React from 'react';
 import { action } from 'mobx';
-import { Localize } from '../../translations';
+import { Localize } from 'translations';
 
 let common_store;
 

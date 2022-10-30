@@ -1,6 +1,6 @@
 import i18n from 'i18next';
 import React from 'react';
-import { getInitialLanguage } from '../../translations';
+import { getInitialLanguage } from 'translations';
 import { initMoment } from '../date';
 import { routes } from '../routes';
 

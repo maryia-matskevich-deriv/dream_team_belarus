@@ -1,11 +1,11 @@
 import moment from 'moment';
 import { flow } from 'mobx';
-import { getPropertyValue } from '../../utils/object';
-import { State } from '../../utils/storage';
-import { getActivePlatform } from '../../utils/platform';
-import { routes } from '../../utils/routes';
-import { getActionFromUrl } from '../../utils/url';
-import { localize } from '../../translations';
+import { getPropertyValue } from 'utils/object';
+import { State } from 'utils/storage';
+import { getActivePlatform } from 'utils/platform';
+import { routes } from 'utils/routes';
+import { getActionFromUrl } from 'utils/url';
+import { localize } from 'translations';
 import ServerTime from '../base/server_time';
 import BinarySocket from '../base/socket_base';
 import WS from './ws-methods';

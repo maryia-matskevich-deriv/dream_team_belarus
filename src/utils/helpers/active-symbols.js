@@ -1,9 +1,9 @@
 import { flow } from 'mobx';
 import { LocalStore } from '../storage';
 import { redirectToLogin } from '../login';
-import { WS } from '../../api/services';
+import { WS } from 'api/services';
 
-import { getLanguage, localize } from '../../translations';
+import { getLanguage, localize } from 'translations';
 
 export const showUnavailableLocationError = flow(function* (showError, is_logged_in) {
     const website_status = yield WS.wait('website_status');

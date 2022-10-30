@@ -1,4 +1,4 @@
-import { localize } from '../../translations';
+import { localize } from 'translations';
 import BinarySocket from './socket_base';
 
 /*

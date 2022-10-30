@@ -1,7 +1,7 @@
 import { str as crc32 } from 'crc-32';
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
-import { isProduction } from '../../utils/config/config';
+import { isProduction } from 'utils/config/config';
 import withI18n from '../components';
 
 const LANGUAGE_KEY = 'i18n_language';
@@ -40,7 +40,7 @@ export const getAllowedLanguages = () => {
 
 const isStaging = () => /staging-app\.deriv\.com/i.test(window.location.hostname);
 
-const isLocal = () => /localhost\.binary\.sx/i.test(window.location.hostname);
+const isLocal = () => /localhost/i.test(window.location.hostname);
 
 const isLanguageAvailable = lang => {
     if (!lang) return false;

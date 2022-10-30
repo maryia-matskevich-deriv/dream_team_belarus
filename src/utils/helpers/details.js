@@ -1,5 +1,5 @@
 import { epochToMoment, formatMilliseconds, getDiffDuration } from '../date';
-import { localize } from '../../translations';
+import { localize } from 'translations';
 
 export const getDurationUnitValue = obj_duration => {
     const duration_ms = obj_duration.asMilliseconds() / 1000;

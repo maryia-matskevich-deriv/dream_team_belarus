@@ -1,5 +1,5 @@
 import React from 'react';
-import { localize, Localize } from '../../translations';
+import { localize, Localize } from 'translations';
 import { TFunctionDetailedResult } from 'i18next';
 import { shouldShowCancellation, shouldShowExpiration } from '../contract';
 

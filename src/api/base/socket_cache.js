@@ -1,6 +1,6 @@
 import moment from 'moment';
-import { getPropertyValue, isEmptyObject } from '../../utils/object';
-import { LocalStore } from '../../utils/storage';
+import { getPropertyValue, isEmptyObject } from 'utils/object';
+import { LocalStore } from 'utils/storage';
 import { getStaticHash } from '../utility';
 
 /*

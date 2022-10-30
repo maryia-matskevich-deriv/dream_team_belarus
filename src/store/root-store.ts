@@ -1,22 +1,25 @@
 import { makeAutoObservable } from 'mobx';
-import WS from '../api/services/ws-methods';
+import WS from 'api/services/ws-methods';
 import ActiveSymbolsStore from './active-symbols-store';
 import ClientStore from './client-store';
 import CommonStore from './common-store';
+import TradeStore from './trade-store';
 import UIStore from './ui-store';
 
 export class RootStore {
-    client: any;
-    common: any;
-    ui: any;
-    active_symbols: any;
+    client: ClientStore;
+    common: CommonStore;
+    ui: UIStore;
+    active_symbols: ActiveSymbolsStore;
+    trade: TradeStore;
 
     constructor() {
         makeAutoObservable(this);
         this.client = new ClientStore(this);
         this.common = new CommonStore(this);
         this.ui = new UIStore(this);
-        this.active_symbols = new ActiveSymbolsStore(this);
+        this.active_symbols = new ActiveSymbolsStore();
+        this.trade = new TradeStore({ root_store: this });
     }
 
     hello = 'Hello from the root store';

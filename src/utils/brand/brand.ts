@@ -16,6 +16,7 @@ type TPlatform = {
 };
 
 type TPlatforms = {
+    deriv_air: TPlatform;
     trader: TPlatform;
     dbot: TPlatform;
     mt5: TPlatform;

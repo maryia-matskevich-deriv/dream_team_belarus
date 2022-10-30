@@ -11,6 +11,10 @@
         "v": "Deriv (V) Ltd"
     },
     "platforms": {
+        "deriv_air": {
+            "name": "Deriv Air",
+            "icon": "IcBrandDerivAir"
+        },
         "trader": {
             "name": "DTrader",
             "icon": "IcBrandDtrader"

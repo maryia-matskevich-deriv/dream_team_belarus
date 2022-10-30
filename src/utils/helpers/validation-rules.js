@@ -1,4 +1,4 @@
-import { localize } from '../../translations';
+import { localize } from 'translations';
 import { getTotalProfit } from '../contract';
 import { getBuyPrice } from './logic';
 

@@ -1,21 +1,10 @@
 import DerivAPIBasic from '@deriv/deriv-api/dist/DerivAPIBasic';
-import { cloneObject, getPropertyValue } from '../../utils/object';
-import { State } from '../../utils/storage';
-import { getLanguage } from '../../translations';
-import { getAppId, getSocketURL, website_name } from '../../utils/config';
+import { cloneObject, getPropertyValue } from 'utils/object';
+import { State } from 'utils/storage';
+import { getLanguage } from 'translations';
+import { getAppId, getSocketURL, website_name } from 'utils/config';
 import SocketCache from './socket_cache';
 import APIMiddleware from './api_middleware';
-
-// const DerivAPIBasic = require('@deriv/deriv-api/dist/DerivAPIBasic');
-// const getAppId = require('../../utils/config').getAppId;
-// const getSocketURL = require('../../utils/config').getSocketURL;
-// const cloneObject = require('../../utils/object').cloneObject;
-// const getPropertyValue = require('../../utils/object').getPropertyValue;
-// const State = require('../../utils/storage').State;
-// const { getLanguage } = require('../../translations');
-// const website_name = require('../../utils/config').website_name;
-// const SocketCache = require('./socket_cache');
-// const APIMiddleware = require('./api_middleware');
 
 /*
  * An abstraction layer over native javascript WebSocket,

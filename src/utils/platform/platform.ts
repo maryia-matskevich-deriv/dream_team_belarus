@@ -15,6 +15,7 @@ type TRoutingHistory = {
 
 export const platform_name = Object.freeze({
     DBot: getPlatformSettings('dbot').name,
+    DerivAir: getPlatformSettings('deriv_air').name,
     DTrader: getPlatformSettings('trader').name,
     DXtrade: getPlatformSettings('dxtrade').name,
     DMT5: getPlatformSettings('mt5').name,
@@ -75,7 +76,11 @@ export const getPlatformInformation = (routing_history: TRoutingHistory) => {
     if (isNavigationFromExternalPlatform(routing_history, routes.binarybot)) {
         return { header: platform_name.BinaryBot, icon: getPlatformSettings('bbot').icon };
     }
-    return { header: platform_name.DTrader, icon: getPlatformSettings('trader').icon };
+
+    if (isNavigationFromExternalPlatform(routing_history, routes.trade)) {
+        return { header: platform_name.DTrader, icon: getPlatformSettings('trader').icon };
+    }
+    return { header: platform_name.DerivAir, icon: getPlatformSettings('deriv_air').icon };
 };
 
 export const getActivePlatform = (routing_history: TRoutingHistory) => {
@@ -84,7 +89,8 @@ export const getActivePlatform = (routing_history: TRoutingHistory) => {
     if (isDXtrade() || isNavigationFromPlatform(routing_history, routes.dxtrade)) return platform_name.DXtrade;
     if (isNavigationFromExternalPlatform(routing_history, routes.smarttrader)) return platform_name.SmartTrader;
     if (isNavigationFromExternalPlatform(routing_history, routes.binarybot)) return platform_name.BinaryBot;
-    return platform_name.DTrader;
+    if (isNavigationFromExternalPlatform(routing_history, routes.trade)) return platform_name.DTrader;
+    return platform_name.DerivAir;
 };
 
 export const getPlatformRedirect = (routing_history: TRoutingHistory) => {
@@ -99,8 +105,10 @@ export const getPlatformRedirect = (routing_history: TRoutingHistory) => {
     if (isNavigationFromP2P(routing_history, routes.cashier_p2p)) return { name: 'P2P', route: routes.cashier_p2p };
     if (isNavigationFromExternalPlatform(routing_history, routes.binarybot))
         return { name: platform_name.BinaryBot, route: routes.binarybot };
+    if (isNavigationFromExternalPlatform(routing_history, routes.trade))
+        return { name: platform_name.DTrader, route: routes.trade };
 
-    return { name: platform_name.DTrader, route: routes.trade };
+    return { name: platform_name.DerivAir, route: routes.deriv_air };
 };
 
 export const isNavigationFromPlatform = (
