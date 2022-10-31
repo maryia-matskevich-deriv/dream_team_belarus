@@ -11,7 +11,7 @@ import IcUnknown from 'assets/icons/common/ic-unknown.svg';
 import IcCircle from 'assets/icons/common/ic-circle.svg';
 
 const Popover = ({
-    alignment,
+    alignment = 'top',
     children,
     className,
     classNameBubble,
@@ -70,7 +70,7 @@ const Popover = ({
                             ? is_open ?? ((is_hovered && message) || (is_bubble_hover_enabled && is_bubble_hovered))
                             : is_open ?? (is_hovered && message)
                     }
-                    positions={['top', 'left', 'right', 'bottom']}
+                    positions={[alignment]}
                     padding={margin + 8}
                     containerClassName={classNames({
                         'react-tiny-popover-container--disabled-pointer-event': should_disable_pointer_events,

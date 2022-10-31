@@ -13,6 +13,7 @@ import { connect } from 'Stores/connect';
 import ToggleMenuDrawer from 'App/Components/Layout/Header/toggle-menu-drawer.jsx';
 import { AccountsInfoLoader } from 'App/Components/Layout/Header/Components/Preloader';
 
+// TODO: adjust and apply this header
 const Header = ({
     acc_switcher_disabled_message,
     account_status,

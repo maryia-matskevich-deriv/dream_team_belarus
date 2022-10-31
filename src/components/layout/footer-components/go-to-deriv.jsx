@@ -11,7 +11,7 @@ export const GoToDeriv = () => {
     return (
         <StaticUrl href='/' className='footer__link'>
             <Popover alignment='top' message={message} zIndex={9999}>
-                <img src={IcDerivOutline} className='footer__icon ic-deriv__icon' alt='ic-deriv-outline'/>
+                <img src={IcDerivOutline} className='footer__icon ic-deriv__icon' alt='ic-deriv-outline' />
             </Popover>
         </StaticUrl>
     );

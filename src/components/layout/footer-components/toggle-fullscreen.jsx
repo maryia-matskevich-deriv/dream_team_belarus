@@ -50,9 +50,9 @@ export const ToggleFullScreen = () => {
                 zIndex={9999}
             >
                 {is_full_screen ? (
-                    <img src={IcFullScreenRestore} className='footer__icon' alt='ic-full-screen-restore'/>
+                    <img src={IcFullScreenRestore} className='footer__icon' alt='ic-full-screen-restore' />
                 ) : (
-                    <img src={IcFullScreen} className='footer__icon' alt='ic-full-screen'/>
+                    <img src={IcFullScreen} className='footer__icon' alt='ic-full-screen' />
                 )}
             </Popover>
         </a>

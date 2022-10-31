@@ -31,11 +31,7 @@ const FooterExtensionRenderer = (footer_extension, idx) => {
 const Footer = () => {
     const { client, ui } = useStore();
     const { is_logged_in, is_eu, is_virtual, landing_company_shortcode } = client;
-    const {
-        footer_extensions,
-        is_app_disabled,
-        is_route_modal_on,
-    } = ui;
+    const { footer_extensions, is_app_disabled, is_route_modal_on } = ui;
     let footer_extensions_left = [];
     let footer_extensions_right = [];
     if (footer_extensions.filter) {
