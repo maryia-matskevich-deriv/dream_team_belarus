@@ -1,5 +1,5 @@
 import React from 'react';
-import Trade from 'components/trade';
+import Trader from 'components/trader';
 import { observer } from 'mobx-react-lite';
 import Header from 'components/old_layout/header';
 import Footer from 'components/layout/footer.jsx';
@@ -12,7 +12,7 @@ const App = () => {
         <div>
             <Header/>
             <Routes>
-                <Route index path={'/'} element={<Trade />} />
+                <Route index path={'/'} element={<Trader />} />
                 <Route path={'*'} element={<Page404 />} />
             </Routes>
             <Footer/>
