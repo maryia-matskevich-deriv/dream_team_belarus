@@ -2,7 +2,7 @@
 //@ts-nocheck
 import React from 'react';
 import PageError from 'components/page-error';
-import { routes } from 'utils/routes';
+import { routes } from 'utils';
 import { localize } from 'translations';
 import 'styles/page-404.scss';
 

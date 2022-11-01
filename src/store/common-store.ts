@@ -1,16 +1,12 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-nocheck
 import { action, computed, makeObservable, observable } from 'mobx';
-import { getAppId, platforms } from 'utils/config';
-import { getUrlBinaryBot, getUrlSmartTrader } from 'utils/url';
-import { isMobile } from 'utils/screen';
-import { routes } from 'utils/routes';
-import { toMoment } from 'utils/date';
 import { getAllowedLanguages } from 'translations';
 import { currentLanguage } from 'utils/Utils/Language/index';
 import ServerTime from 'api/base/server_time';
 import BinarySocket from 'api/base/socket_base';
 import BaseStore from './base-store';
+import { getAppId, getUrlBinaryBot, getUrlSmartTrader, isMobile, platforms, routes, toMoment } from 'utils';
 
 export default class CommonStore extends BaseStore {
     constructor(root_store) {

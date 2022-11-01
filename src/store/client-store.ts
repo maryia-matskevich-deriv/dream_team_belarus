@@ -1,14 +1,22 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-nocheck
-import { getPropertyValue, isEmptyObject } from 'utils/object';
-import { getUrlBinaryBot, getUrlSmartTrader, deriv_urls, urlForLanguage, filterUrlQuery } from 'utils/url';
-import { isDesktopOs } from 'utils/os';
-import { LocalStore, State } from 'utils/storage';
-import { redirectToLogin } from 'utils/login';
-import { setCurrencies } from 'utils/currency';
-import { toMoment } from 'utils/date';
-import { CFD_PLATFORMS } from 'utils/platform';
-import { routes } from 'utils/routes';
+import {
+    getPropertyValue,
+    getUrlBinaryBot,
+    getUrlSmartTrader,
+    isDesktopOs,
+    isEmptyObject,
+    LocalStore,
+    redirectToLogin,
+    setCurrencies,
+    State,
+    toMoment,
+    deriv_urls,
+    urlForLanguage,
+    filterUrlQuery,
+    CFD_PLATFORMS,
+    routes,
+} from 'utils';
 import { getLanguage, localize } from 'translations';
 import Cookies from 'js-cookie';
 import { action, computed, makeObservable, observable, reaction, runInAction, toJS, when } from 'mobx';
@@ -17,7 +25,7 @@ import { requestLogout, WS } from 'api/services';
 import BinarySocketGeneral from 'api/services/socket-general';
 import BinarySocket from 'api/base/socket_base';
 import SocketCache from 'api/base/socket_cache';
-import { isEuCountry } from 'utils/location';
+import { isEuCountry } from 'api/utility';
 import { isMultipliersOnly, isOptionsBlocked } from 'api/utility';
 import BaseStore from './base-store';
 import { getAccountTitle, getClientAccountType } from './helpers/client';
@@ -1362,8 +1370,8 @@ export default class ClientStore extends BaseStore {
     async switchAccount(loginid) {
         this.setPreSwitchAccount(true);
         this.setIsLoggingIn(true);
-        this.root_store.notifications.removeNotifications(true);
-        this.root_store.notifications.removeAllNotificationMessages(true);
+        // this.root_store.notifications.removeNotifications(true);
+        // this.root_store.notifications.removeAllNotificationMessages(true);
         this.setSwitched(loginid);
         this.responsePayoutCurrencies(await WS.authorized.payoutCurrencies());
     }
@@ -1712,7 +1720,7 @@ export default class ClientStore extends BaseStore {
         sessionStorage.setItem('active_tab', '1');
 
         // set local storage
-        this.root_store.gtm.setLoginFlag();
+        // this.root_store.gtm.setLoginFlag();
 
         await this.init();
 
@@ -1731,8 +1739,8 @@ export default class ClientStore extends BaseStore {
             () => {
                 // Remove real account notifications upon switching to virtual
                 if (this.accounts[this.switched]?.is_virtual) {
-                    this.root_store.notifications.removeNotifications(true);
-                    this.root_store.notifications.removeAllNotificationMessages();
+                    // this.root_store.notifications.removeNotifications(true);
+                    // this.root_store.notifications.removeAllNotificationMessages();
                 }
 
                 this.switchAccountHandler();
@@ -1743,9 +1751,9 @@ export default class ClientStore extends BaseStore {
     setBalanceActiveAccount(obj_balance) {
         if (this.accounts[obj_balance?.loginid] && obj_balance.loginid === this.loginid) {
             this.accounts[obj_balance.loginid].balance = obj_balance.balance;
-            if (this.accounts[obj_balance.loginid].is_virtual) {
-                this.root_store.notifications.resetVirtualBalanceNotification(obj_balance.loginid);
-            }
+            // if (this.accounts[obj_balance.loginid].is_virtual) {
+            //     this.root_store.notifications.resetVirtualBalanceNotification(obj_balance.loginid);
+            // }
             this.resetLocalStorageValues(this.loginid);
         }
     }

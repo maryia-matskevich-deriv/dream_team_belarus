@@ -1,5 +1,5 @@
 import debounce from 'lodash.debounce';
-import { isEmptyObject } from 'utils/object';
+import { isEmptyObject } from 'utils';
 import { WS } from 'api/services';
 import { createProposalRequests } from './proposal';
 

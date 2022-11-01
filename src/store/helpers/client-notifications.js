@@ -1,6 +1,4 @@
-import { isEmptyObject } from 'utils/object';
-import { isMobile } from 'utils/screen';
-import { State } from 'utils/storage';
+import { isEmptyObject, isMobile, State } from 'utils';
 
 export const hasMissingRequiredField = (account_settings, client, isAccountOfType) => {
     if (!account_settings || isEmptyObject(account_settings)) return false;

@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { getStaticUrl } from 'utils/url';
-import { PlatformContext } from 'utils/platform';
+import { getStaticUrl, PlatformContext } from 'utils';
 
 const StaticUrl = ({ href, is_document, children, ...props }) => {
     const { is_appstore } = React.useContext(PlatformContext);

@@ -2,12 +2,6 @@
 //@ts-nocheck
 import debounce from 'lodash.debounce';
 import { action, computed, makeObservable, observable, override, reaction, runInAction, toJS, when } from 'mobx';
-import { cloneObject, getPropertyValue, isEmptyObject } from 'utils/object';
-import { extractInfoFromShortcode } from 'utils/shortcode';
-import { getMinPayout, isCryptocurrency } from 'utils/currency';
-import { getPlatformSettings } from 'utils/brand';
-import { isDesktop, isMobile } from 'utils/screen';
-import { showDigitalOptionsUnavailableError } from 'utils/digital-options';
 import { WS } from 'api/services';
 import {
     pickDefaultSymbol,
@@ -18,7 +12,17 @@ import {
     convertDurationLimit,
     resetEndTimeOnVolatilityIndices,
     getBarrierPipSize,
-} from 'utils/helpers';
+    cloneObject,
+    getPropertyValue,
+    isEmptyObject,
+    extractInfoFromShortcode,
+    getMinPayout,
+    isCryptocurrency,
+    getPlatformSettings,
+    isDesktop,
+    isMobile,
+    showDigitalOptionsUnavailableError,
+} from 'utils';
 import { localize } from 'translations';
 import { getValidationRules, getMultiplierValidationRules } from './trading/Constants/validation-rules';
 import { ContractType } from './helpers/contract-type';

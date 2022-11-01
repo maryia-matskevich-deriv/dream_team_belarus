@@ -13,6 +13,26 @@ const host_map = {
 };
 let location_url, static_host, default_language;
 
+const getTopLevelDomain = () => {
+    const current_domain = getCurrentProductionDomain();
+    return current_domain ? current_domain.split('.').splice(-1) : 'com';
+};
+
+const deriv_app_domain = `https://app.deriv.${getTopLevelDomain()}`;
+
+const getAllowedLocalStorageOrigin = () => {
+    // TODO: [app-link-refactor] - Remove backwards compatibility for `deriv.app`
+    if (/^staging-deriv_air\.deriv\.com$/i.test(window.location.hostname)) {
+        return 'https://staging-app.deriv.com';
+    } else if (/^deriv_air\.deriv\.com$/i.test(window.location.hostname)) {
+        return deriv_app_domain;
+    }
+    return deriv_app_domain;
+};
+
+export const urlForDeriv = (path, pars) =>
+    `${getAllowedLocalStorageOrigin() || deriv_app_domain}/${path}${pars ? `?${pars}` : ''}`;
+
 export const legacyUrlForLanguage = (target_language, url = window.location.href) =>
     url.replace(new RegExp(`/${default_language}/`, 'i'), `/${(target_language || 'EN').trim().toLowerCase()}/`);
 

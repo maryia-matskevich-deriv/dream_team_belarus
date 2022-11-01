@@ -1,4 +1,4 @@
-import { removeCookies } from 'utils/storage';
+import { removeCookies } from 'utils';
 import SocketCache from '../base/socket_cache';
 import WS from './ws-methods';
 

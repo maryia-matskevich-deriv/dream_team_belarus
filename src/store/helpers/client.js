@@ -1,5 +1,5 @@
 import { localize } from 'translations';
-import { getPropertyValue } from 'utils/object';
+import { getPropertyValue } from 'utils';
 
 export const getClientAccountType = loginid => {
     let account_type;

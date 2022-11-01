@@ -1,4 +1,4 @@
-import { isDesktop } from 'utils/screen';
+import { isDesktop } from 'utils';
 
 const Desktop = ({ children }: { children: React.ReactNode }) => {
     if (!isDesktop()) return null;

@@ -1,5 +1,12 @@
 import { routes } from '../routes';
 import { getPlatformSettings } from '../brand';
+import IcBrandDerivAir from 'assets/icons/brand/ic-brand-deriv-air.svg';
+import IcBrandDtrader from 'assets/icons/brand/ic-brand-dtrader.svg';
+import IcBrandDbot from 'assets/icons/brand/ic-brand-dbot.svg';
+import IcBrandDmt5 from 'assets/icons/brand/ic-brand-dmt5.svg';
+import IcBrandDxtrade from 'assets/icons/brand/ic-brand-dxtrade.svg';
+import IcBrandSmarttrader from 'assets/icons/brand/ic-brand-smarttrader.svg';
+import IcBrandBinarybot from 'assets/icons/brand/ic-brand-binarybot.svg';
 
 type TRoutingHistory = {
     action: string;
@@ -46,7 +53,7 @@ export const getPathname = () => {
     if (isDXtrade()) return platform_name.DXtrade;
     switch (window.location.pathname.split('/')[1]) {
         case '':
-            return platform_name.DTrader;
+            return platform_name.DerivAir;
         case 'reports':
             return 'Reports';
         case 'cashier':
@@ -56,31 +63,41 @@ export const getPathname = () => {
     }
 };
 
+export const platforms_icons = {
+    dbot: IcBrandDbot,
+    deriv_air: IcBrandDerivAir,
+    trader: IcBrandDtrader,
+    dxtrade: IcBrandDxtrade,
+    mt5: IcBrandDmt5,
+    smarttrader: IcBrandSmarttrader,
+    bbot: IcBrandBinarybot,
+};
+
 export const getPlatformInformation = (routing_history: TRoutingHistory) => {
     if (isBot() || isNavigationFromPlatform(routing_history, routes.bot)) {
-        return { header: platform_name.DBot, icon: getPlatformSettings('dbot').icon };
+        return { header: platform_name.DBot, icon: IcBrandDbot };
     }
 
     if (isMT5() || isNavigationFromPlatform(routing_history, routes.mt5)) {
-        return { header: platform_name.DMT5, icon: getPlatformSettings('mt5').icon };
+        return { header: platform_name.DMT5, icon: IcBrandDmt5 };
     }
 
     if (isDXtrade() || isNavigationFromPlatform(routing_history, routes.dxtrade)) {
-        return { header: platform_name.DXtrade, icon: getPlatformSettings('dxtrade').icon };
+        return { header: platform_name.DXtrade, icon: IcBrandDxtrade };
     }
 
     if (isNavigationFromExternalPlatform(routing_history, routes.smarttrader)) {
-        return { header: platform_name.SmartTrader, icon: getPlatformSettings('smarttrader').icon };
+        return { header: platform_name.SmartTrader, icon: IcBrandSmarttrader };
     }
 
     if (isNavigationFromExternalPlatform(routing_history, routes.binarybot)) {
-        return { header: platform_name.BinaryBot, icon: getPlatformSettings('bbot').icon };
+        return { header: platform_name.BinaryBot, icon: IcBrandBinarybot };
     }
 
     if (isNavigationFromExternalPlatform(routing_history, routes.trade)) {
-        return { header: platform_name.DTrader, icon: getPlatformSettings('trader').icon };
+        return { header: platform_name.DTrader, icon: IcBrandDtrader };
     }
-    return { header: platform_name.DerivAir, icon: getPlatformSettings('deriv_air').icon };
+    return { header: platform_name.DerivAir, icon: IcBrandDerivAir };
 };
 
 export const getActivePlatform = (routing_history: TRoutingHistory) => {

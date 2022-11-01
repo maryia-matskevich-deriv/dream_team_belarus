@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React, { CSSProperties, HTMLProps } from 'react';
-import { isEmptyObject } from 'utils/object';
+import { isEmptyObject } from 'utils';
 
 type TTextProps = Omit<HTMLProps<HTMLElement>, 'size'> & {
     align?: string;

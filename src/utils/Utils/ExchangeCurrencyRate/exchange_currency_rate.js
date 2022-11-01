@@ -1,4 +1,4 @@
-import BinarySocket from '_common/base/socket_base';
+import BinarySocket from 'api/base/socket_base';
 
 export const getExchangeRate = async (from_currency, to_currency) => {
     const { exchange_rates } = await BinarySocket.exchange_rates(from_currency);

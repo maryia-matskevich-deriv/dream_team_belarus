@@ -1,4 +1,4 @@
-import { getExpiryType, getDurationMinMaxValues } from '../../../utils/helpers';
+import { getExpiryType, getDurationMinMaxValues } from 'utils';
 import { ContractType } from '../../helpers/contract-type';
 
 export const onChangeExpiry = store => {

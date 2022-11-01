@@ -1,8 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 //@ts-nocheck
 import { intercept, action, isObservable, makeObservable, observable, reaction, toJS, when } from 'mobx';
-import { isProduction } from 'utils/config';
-import { isEmptyObject } from 'utils/object';
+import { isProduction, isEmptyObject } from 'utils';
 
 import Validator from 'utils/Utils/Validator';
 

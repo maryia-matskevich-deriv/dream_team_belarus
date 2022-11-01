@@ -9,8 +9,8 @@ import NetworkStatus, {
     ResponsibleTrading,
     ToggleFullScreen,
     ServerTime,
-} from './footer-components';
-import LiveChat from './live-chat';
+} from '.';
+import LiveChat from '../live-chat';
 import { observer } from 'mobx-react-lite';
 import { useStore } from 'store';
 import 'styles/layout/footer.scss';

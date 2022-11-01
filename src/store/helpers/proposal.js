@@ -1,6 +1,4 @@
-import { getDecimalPlaces } from 'utils/currency';
-import { convertToUnix, toMoment } from 'utils/date';
-import { getPropertyValue } from 'utils/object';
+import { getDecimalPlaces, convertToUnix, toMoment, getPropertyValue } from 'utils';
 
 const isVisible = elem => !(!elem || (elem.offsetWidth === 0 && elem.offsetHeight === 0));
 

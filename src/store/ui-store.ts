@@ -2,10 +2,7 @@
 //@ts-nocheck
 import { action, autorun, makeObservable, observable, computed } from 'mobx';
 import BaseStore from './base-store';
-import { LocalStore } from 'utils/storage';
-import { MAX_MOBILE_WIDTH, MAX_TABLET_WIDTH, isMobile, isTouchDevice } from 'utils/screen';
-import { isBot } from 'utils/platform';
-import { routes } from 'utils/routes';
+import { MAX_MOBILE_WIDTH, MAX_TABLET_WIDTH, isMobile, isTouchDevice, LocalStore, isBot, routes } from 'utils';
 
 const store_name = 'ui_store';
 

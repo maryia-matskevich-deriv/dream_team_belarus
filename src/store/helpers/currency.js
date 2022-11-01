@@ -1,4 +1,4 @@
-import { isCryptocurrency } from 'utils/currency';
+import { isCryptocurrency } from 'utils';
 import { localize } from 'translations';
 
 export const buildCurrenciesList = payout_currencies => {

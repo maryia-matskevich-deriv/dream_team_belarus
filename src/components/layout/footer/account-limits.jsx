@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import Popover from 'components/popover';
-import { routes } from 'utils/routes';
+import { routes } from 'utils';
 import { localize } from 'translations';
 import IcAccountLimits from 'assets/icons/common/ic-account-limits.svg';
 

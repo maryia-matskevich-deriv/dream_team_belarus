@@ -1,4 +1,4 @@
-import { CookieStorage } from 'utils/storage';
+import { CookieStorage } from 'utils';
 
 export const getCookieObject = cookie_name => {
     const cookie_object = new CookieStorage(cookie_name.includes('utm') ? 'utm_data' : cookie_name);

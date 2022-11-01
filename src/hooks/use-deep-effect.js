@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { isDeepEqual } from 'utils/object';
+import { isDeepEqual } from 'utils';
 
 // Note: Do not use this effect on huge objects or objects with
 // circular references as performance may suffer.

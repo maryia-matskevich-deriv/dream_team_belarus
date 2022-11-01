@@ -1,4 +1,4 @@
-import { livechat_license_id } from 'utils/config';
+import { livechat_license_id } from 'utils';
 
 // Initialization code provided by Livechat
 export const liveChatInitialization = () =>

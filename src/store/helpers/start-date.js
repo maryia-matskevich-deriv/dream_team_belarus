@@ -1,5 +1,5 @@
 import ServerTime from 'api/base/server_time';
-import { toMoment } from 'utils/date';
+import { toMoment } from 'utils';
 
 const isBeforeDate = (compare_moment, start_moment, should_only_check_hour) => {
     const now_moment = toMoment(start_moment);

@@ -4,8 +4,7 @@ import Modal from 'components/modal';
 import Popover from 'components/popover';
 import StaticUrl from 'components/static-url';
 import { localize, Localize } from 'translations';
-import { deriv_urls } from 'utils/url';
-import { getLegalEntityName } from 'utils/brand';
+import { deriv_urls, getLegalEntityName } from 'utils';
 import MGALogo from 'assets/icons/mga.svg';
 import IcRegulatoryInformation from 'assets/icons/common/ic-regulatory-information.svg';
 
@@ -131,5 +130,5 @@ export const RegulatoryInformation = ({ landing_company, is_eu }) => {
 
 RegulatoryInformation.propTypes = {
     is_eu: PropTypes.bool,
-    landing_company: PropTypes.object,
+    landing_company: PropTypes.string,
 };

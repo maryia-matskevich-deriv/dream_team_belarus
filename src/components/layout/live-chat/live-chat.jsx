@@ -4,7 +4,7 @@ import Cookies from 'js-cookie';
 import { useLocation } from 'react-router-dom';
 import Popover from 'components/popover';
 import './live-chat.scss';
-import { deriv_urls } from 'utils/url';
+import { deriv_urls } from 'utils';
 import { localize } from 'translations';
 import { liveChatInitialization } from './live-chat';
 import { useStore } from 'store';
@@ -57,10 +57,10 @@ const LiveChat = ({ is_mobile_drawer }) => {
                 const domain = /^(.)*deriv\.(com|me)$/gi.test(window.location.hostname)
                     ? deriv_urls.DERIV_HOST_NAME
                     : 'binary.sx';
-                const client_information = Cookies.getJSON('client_information', {
+                const client_information = Cookies.get('client_information', {
                     domain,
                 });
-                const utm_data = Cookies.getJSON('utm_data', { domain });
+                const utm_data = Cookies.get('utm_data', { domain });
 
                 const { utm_source, utm_medium, utm_campaign } = utm_data || {};
 
@@ -153,11 +153,7 @@ const LiveChat = ({ is_mobile_drawer }) => {
                             }}
                         >
                             <div className='livechat__icon-wrapper'>
-                                <img
-                                    src={IcLiveChat}
-                                    className='livechat__icon'
-                                    alt='ic-live-chat'
-                                />
+                                <img src={IcLiveChat} className='livechat__icon' alt='ic-live-chat' />
                             </div>
                             <p className='livechat__title'>{localize('Live chat')}</p>
                         </div>
@@ -174,11 +170,7 @@ const LiveChat = ({ is_mobile_drawer }) => {
                                 message={localize('Live chat')}
                                 zIndex={9999}
                             >
-                                <img
-                                    src={IcLiveChat}
-                                    className='footer__icon gtm-deriv-livechat'
-                                    alt='ic-live-chat'
-                                />
+                                <img src={IcLiveChat} className='footer__icon gtm-deriv-livechat' alt='ic-live-chat' />
                             </Popover>
                         </div>
                     )}

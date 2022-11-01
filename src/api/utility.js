@@ -100,7 +100,7 @@ const isOptionsBlocked = country => blocked_options_countries.includes(country);
 const multipliers_only_countries = ['de', 'es', 'it', 'lu', 'gr', 'au', 'fr'];
 const isMultipliersOnly = country => multipliers_only_countries.includes(country);
 
-module.exports = {
+export {
     template,
     createElement,
     getStaticHash,

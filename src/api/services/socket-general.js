@@ -2,14 +2,15 @@ import moment from 'moment';
 import { flow } from 'mobx';
 import { getPropertyValue } from 'utils/object';
 import { State } from 'utils/storage';
-import { getActivePlatform } from 'utils/platform';
 import { routes } from 'utils/routes';
 import { getActionFromUrl } from 'utils/url';
 import { localize } from 'translations';
 import ServerTime from '../base/server_time';
 import BinarySocket from '../base/socket_base';
 import WS from './ws-methods';
+import { getPlatformSettings } from 'utils/brand';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 let client_store, common_store, gtm_store;
 
 // TODO: update commented statements to the corresponding functions from app
@@ -70,7 +71,7 @@ const BinarySocketGeneral = (() => {
                     setResidence(response.get_settings.country_code);
                     client_store.setEmail(response.get_settings.email);
                     client_store.setAccountSettings(response.get_settings);
-                    gtm_store.eventHandler(response.get_settings);
+                    // gtm_store.eventHandler(response.get_settings);
                 }
                 break;
             case 'set_account_currency':
@@ -83,7 +84,7 @@ const BinarySocketGeneral = (() => {
                 client_store.responsePayoutCurrencies(response.payout_currencies);
                 break;
             case 'transaction':
-                gtm_store.pushTransactionData(response);
+                // gtm_store.pushTransactionData(response);
                 break;
             // no default
         }
@@ -203,7 +204,7 @@ const BinarySocketGeneral = (() => {
                     if (window.TrackJS) window.TrackJS.track('Custom InvalidToken error');
                 }
                 // eslint-disable-next-line no-case-declarations
-                const active_platform = getActivePlatform(common_store.app_routing_history);
+                const active_platform = getPlatformSettings('deriv_air').name;
 
                 // DBot handles this internally. Special case: 'client.invalid_token'
                 if (active_platform === 'DBot') return;

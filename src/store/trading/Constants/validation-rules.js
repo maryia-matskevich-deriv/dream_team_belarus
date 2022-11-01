@@ -1,5 +1,5 @@
 import { localize } from 'translations';
-import { isHourValid, isMinuteValid, isTimeValid, toMoment } from 'utils/date';
+import { isHourValid, isMinuteValid, isTimeValid, toMoment } from 'utils';
 import { isSessionAvailable } from '../../helpers/start-date';
 
 export const getValidationRules = () => ({

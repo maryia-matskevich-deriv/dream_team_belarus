@@ -1,7 +1,7 @@
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { isMobile } from 'utils/screen';
+import { isMobile } from 'utils';
 import ButtonLink from '../button-link/button-link';
 import DesktopWrapper from '../desktop-wrapper/desktop-wrapper';
 import MobileWrapper from '../mobile-wrapper/mobile-wrapper';

@@ -40,7 +40,7 @@ export const getAllowedLanguages = () => {
 
 const isStaging = () => /staging-app\.deriv\.com/i.test(window.location.hostname);
 
-const isLocal = () => /localhost/i.test(window.location.hostname);
+const isLocal = () => /localhost\.binary\.sx/i.test(window.location.hostname);
 
 const isLanguageAvailable = lang => {
     if (!lang) return false;

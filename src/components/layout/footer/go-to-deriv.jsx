@@ -2,7 +2,7 @@ import React from 'react';
 import Popover from 'components/popover';
 import StaticUrl from 'components/static-url';
 import { localize } from 'translations';
-import { deriv_urls } from 'utils/url';
+import { deriv_urls } from 'utils';
 import IcDerivOutline from 'assets/icons/common/ic-deriv-outline.svg';
 
 export const GoToDeriv = () => {

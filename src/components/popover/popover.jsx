@@ -185,7 +185,13 @@ const Popover = ({
                                         <img src={IcUnknown} className={icon_class_name} alt='ic-unknown' />
                                     )}
                                     {icon === 'dot' && (
-                                        <img src={IcCircle} className={icon_class_name} size={4} alt='ic-circle' />
+                                        <img
+                                            src={IcCircle}
+                                            className={icon_class_name}
+                                            width={4}
+                                            height={4}
+                                            alt='ic-circle'
+                                        />
                                     )}
                                     {icon === 'counter' && <span className={icon_class_name}>{counter}</span>}
                                 </i>

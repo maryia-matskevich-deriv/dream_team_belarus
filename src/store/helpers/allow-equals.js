@@ -1,5 +1,5 @@
 import { localize } from 'translations';
-import { getPropertyValue, isEmptyObject } from 'utils/object';
+import { getPropertyValue, isEmptyObject } from 'utils';
 import { ContractType } from './contract-type';
 
 export const hasCallPutEqual = contract_type_list => {
