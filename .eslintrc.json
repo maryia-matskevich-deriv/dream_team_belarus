@@ -25,11 +25,13 @@
     ],
     "rules": {
         "indent": 0,
-        "no-console": "error",
+        "no-console": "warn",
         "quotes": [
-            "error",
+            "warn",
             "single"
         ],
-        "@typescript-eslint/no-use-before-define": "error"
+        "@typescript-eslint/no-use-before-define": "off",
+        "@typescript-eslint/no-var-requires": 0,
+        "@typescript-eslint/no-empty-function": "off"
     }
 }
