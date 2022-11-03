@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './trader.module.scss';
 import Multipliers from './trade-types/multipliers';
+import SymbolDropdown from '../symbol-dropdown/symbol-dropdown';
 
 const Trader = () => {
-
+    
     // set ws connection, set symbols and types, price, pass types to types component
 //add contrct switcher
 
@@ -11,6 +12,8 @@ const Trader = () => {
         <div className={styles.traderContainer}>
             <div className={styles.traderContainer_tradeTypes}>
                 <div className={styles.traderContainer_tradeTypes_select}>Symbols</div>
+                // TODO: remove it later
+                    <SymbolDropdown />
                 {/*temporary - delete after implementation*/}
                 <div className={styles.traderContainer_tradeTypes_select}>Types</div>
             </div>
