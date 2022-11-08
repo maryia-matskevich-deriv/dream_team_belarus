@@ -154,171 +154,317 @@ import Ic_WLDGBP from 'assets/icons/underlying/ic-underlying-WLDGBP.svg';
 import Ic_WLDUSD from 'assets/icons/underlying/ic-underlying-WLDUSD.svg';
 import Ic_WLDXAU from 'assets/icons/underlying/ic-underlying-WLDXAU.svg';
 
-// TODO: remove it later + finish switch
-export const icons =
-{
-    'underlying': [
-        'IcUnderlying1HZ200V',
-        'IcUnderlying1HZ25V',
-        'IcUnderlying1HZ300V',
-        'IcUnderlying1HZ50V',
-        'IcUnderlying1HZ75V',
-        'IcUnderlyingBOOM1000',
-        'IcUnderlyingBOOM300N',
-        'IcUnderlyingBOOM500',
-        'IcUnderlyingCRASH1000',
-        'IcUnderlyingCRASH300N',
-        'IcUnderlyingCRASH500',
-        'IcUnderlyingCRYBCHUSD',
-        'IcUnderlyingCRYBNBUSD',
-        'IcUnderlyingCRYBTCETH',
-        'IcUnderlyingCRYBTCLTC',
-        'IcUnderlyingCRYBTCUSD',
-        'IcUnderlyingCRYDSHUSD',
-        'IcUnderlyingCRYEOSUSD',
-        'IcUnderlyingCRYETHUSD',
-        'IcUnderlyingCRYIOTUSD',
-        'IcUnderlyingCRYLTCUSD',
-        'IcUnderlyingCRYNEOUSD',
-        'IcUnderlyingCRYOMGUSD',
-        'IcUnderlyingCRYPTOBTCCASHUSD',
-        'IcUnderlyingCRYPTOBTCUSD',
-        'IcUnderlyingCRYPTODASHUSD',
-        'IcUnderlyingCRYPTOEOSUSD',
-        'IcUnderlyingCRYPTOETHUSD',
-        'IcUnderlyingCRYPTOLITUSD',
-        'IcUnderlyingCRYPTORIPUSD',
-        'IcUnderlyingCRYTRXUSD',
-        'IcUnderlyingCRYXLMUSD',
-        'IcUnderlyingCRYXMRUSD',
-        'IcUnderlyingCRYXRPUSD',
-        'IcUnderlyingCRYZECUSD',
-        'IcUnderlyingENERGYOILBRENT',
-        'IcUnderlyingENERGYOILUSD',
-        'IcUnderlyingENERGYOILWEST',
-        'IcUnderlyingFRXAUDCAD',
-        'IcUnderlyingFRXAUDCHF',
-        'IcUnderlyingFRXAUDJPY',
-        'IcUnderlyingFRXAUDNZD',
-        'IcUnderlyingFRXAUDPLN',
-        'IcUnderlyingFRXAUDSGD',
-        'IcUnderlyingFRXAUDUSD',
-        'IcUnderlyingFRXBROUSD',
-        'IcUnderlyingFRXCADCHF',
-        'IcUnderlyingFRXCADJPY',
-        'IcUnderlyingFRXCHFJPY',
-        'IcUnderlyingFRXCHFJYP',
-        'IcUnderlyingFRXEURAUD',
-        'IcUnderlyingFRXEURCAD',
-        'IcUnderlyingFRXEURCHF',
-        'IcUnderlyingFRXEURGBP',
-        'IcUnderlyingFRXEURHDK',
-        'IcUnderlyingFRXEURHKD',
-        'IcUnderlyingFRXEURILS',
-        'IcUnderlyingFRXEURJPY',
-        'IcUnderlyingFRXEURMXN',
-        'IcUnderlyingFRXEURNOK',
-        'IcUnderlyingFRXEURNZD',
-        'IcUnderlyingFRXEURSEK',
-        'IcUnderlyingFRXEURSGD',
-        'IcUnderlyingFRXEURTRY',
-        'IcUnderlyingFRXEURUSD',
-        'IcUnderlyingFRXEURZAR',
-        'IcUnderlyingFRXGBPAUD',
-        'IcUnderlyingFRXGBPCAD',
-        'IcUnderlyingFRXGBPCHF',
-        'IcUnderlyingFRXGBPJPY',
-        'IcUnderlyingFRXGBPNOK',
-        'IcUnderlyingFRXGBPNZD',
-        'IcUnderlyingFRXGBPPLN',
-        'IcUnderlyingFRXGBPSEK',
-        'IcUnderlyingFRXGBPSGD',
-        'IcUnderlyingFRXGBPTRY',
-        'IcUnderlyingFRXGBPUSD',
-        'IcUnderlyingFRXGBPZD',
-        'IcUnderlyingFRXGPBSGD',
-        'IcUnderlyingFRXHDKJPY',
-        'IcUnderlyingFRXHKDJPY',
-        'IcUnderlyingFRXNZDCAD',
-        'IcUnderlyingFRXNZDCHF',
-        'IcUnderlyingFRXNZDJPY',
-        'IcUnderlyingFRXNZDSGD',
-        'IcUnderlyingFRXNZDUSD',
-        'IcUnderlyingFRXSGDJPY',
-        'IcUnderlyingFRXUSDCAD',
-        'IcUnderlyingFRXUSDCHF',
-        'IcUnderlyingFRXUSDCNH',
-        'IcUnderlyingFRXUSDHKD',
-        'IcUnderlyingFRXUSDILS',
-        'IcUnderlyingFRXUSDJPY',
-        'IcUnderlyingFRXUSDMSX',
-        'IcUnderlyingFRXUSDMXN',
-        'IcUnderlyingFRXUSDNOK',
-        'IcUnderlyingFRXUSDPLN',
-        'IcUnderlyingFRXUSDRUB',
-        'IcUnderlyingFRXUSDSEK',
-        'IcUnderlyingFRXUSDSGD',
-        'IcUnderlyingFRXUSDTHB',
-        'IcUnderlyingFRXUSDTRY',
-        'IcUnderlyingFRXUSDZAR',
-        'IcUnderlyingFRXXAGUSD',
-        'IcUnderlyingFRXXAUUSD',
-        'IcUnderlyingFRXXPDUSD',
-        'IcUnderlyingFRXXPTUSD',
-        'IcUnderlyingJD10',
-        'IcUnderlyingJD100',
-        'IcUnderlyingJD150',
-        'IcUnderlyingJD200',
-        'IcUnderlyingJD25',
-        'IcUnderlyingJD50',
-        'IcUnderlyingJD75',
-        'IcUnderlyingOTC_AEX',
-        'IcUnderlyingOTC_AS51',
-        'IcUnderlyingOTC_AUSTRALIA_200',
-        'IcUnderlyingOTC_DJI',
-        'IcUnderlyingOTC_EUR_50',
-        'IcUnderlyingOTC_EUR',
-        'IcUnderlyingOTC_FCHI',
-        'IcUnderlyingOTC_FRANCE_40',
-        'IcUnderlyingOTC_FTSE',
-        'IcUnderlyingOTC_GDAXI',
-        'IcUnderlyingOTC_GERMANY_30',
-        'IcUnderlyingOTC_HSI',
-        'IcUnderlyingOTC_IBEX35',
-        'IcUnderlyingOTC_N225',
-        'IcUnderlyingOTC_NDX',
-        'IcUnderlyingOTC_NETHERLAND_25',
-        'IcUnderlyingOTC_SPAIN_35',
-        'IcUnderlyingOTC_SPC',
-        'IcUnderlyingOTC_SSMI',
-        'IcUnderlyingOTC_SX5E',
-        'IcUnderlyingOTC_UK_100',
-        'IcUnderlyingOTC_US_30',
-        'IcUnderlyingOTC_US_500',
-        'IcUnderlyingOTC_US_TECH_10',
-        'IcUnderlyingR_10',
-        'IcUnderlyingR_100',
-        'IcUnderlyingR_25',
-        'IcUnderlyingR_50',
-        'IcUnderlyingR_75',
-        'IcUnderlyingRB_100',
-        'IcUnderlyingRB_200',
-        'IcUnderlyingRDBEAR',
-        'IcUnderlyingRDBULL',
-        'IcUnderlyingSTPRNG',
-        'IcUnderlyingWLDAUD',
-        'IcUnderlyingWLDEUR',
-        'IcUnderlyingWLDGBP',
-        'IcUnderlyingWLDUSD',
-        'IcUnderlyingWLDXAU',
-    ],
-};
-
 export function getIcon(iconId: string) {
-    switch(iconId) {
-        case 'IcUnderlying1HZ100V':
+    switch (iconId.toUpperCase()) {
+        case '1HZ100V':
             return Ic_1HZ100V;
-        case 'IcUnderlying1HZ10V':
+        case '1HZ10V':
             return Ic_1HZ10V;
+        case '1HZ200V':
+            return Ic_1HZ200V;
+        case '1HZ25V':
+            return Ic_1HZ25V;
+        case '1HZ300V':
+            return Ic_1HZ300V;
+        case '1HZ50V':
+            return Ic_1HZ50V;
+        case '1HZ75V':
+            return Ic_1HZ75V;
+        case 'BOOM1000':
+            return Ic_BOOM1000;
+        case 'BOOM300N':
+            return Ic_BOOM300N;
+        case 'BOOM500':
+            return Ic_BOOM500;
+        case 'CRASH1000':
+            return Ic_CRASH1000;
+        case 'CRASH300N':
+            return Ic_CRASH300N;
+        case 'CRASH500':
+            return Ic_CRASH500;
+        case 'CRYBCHUSD':
+            return Ic_CRYBCHUSD;
+        case 'CRYBNBUSD':
+            return Ic_CRYBNBUSD;
+        case 'CRYBTCETH':
+            return Ic_CRYBTCETH;
+        case 'CRYBTCLTC':
+            return Ic_CRYBTCLTC;
+        case 'CRYBTCUSD':
+            return Ic_CRYBTCUSD;
+        case 'CRYDSHUSD':
+            return Ic_CRYDSHUSD;
+        case 'CRYEOSUSD':
+            return Ic_CRYEOSUSD;
+        case 'CRYETHUSD':
+            return Ic_CRYETHUSD;
+        case 'CRYIOTUSD':
+            return Ic_CRYIOTUSD;
+        case 'CRYLTCUSD':
+            return Ic_CRYLTCUSD;
+        case 'CRYNEOUSD':
+            return Ic_CRYNEOUSD;
+        case 'CRYOMGUSD':
+            return Ic_CRYOMGUSD;
+        case 'CRYPTOBTCCASHUSD':
+            return Ic_CRYPTOBTCCASHUSD;
+        case 'CRYPTOBTCUSD':
+            return Ic_CRYPTOBTCUSD;
+        case 'CRYPTODASHUSD':
+            return Ic_CRYPTODASHUSD;
+        case 'CRYPTOEOSUSD':
+            return Ic_CRYPTOEOSUSD;
+        case 'CRYPTOETHUSD':
+            return Ic_CRYPTOETHUSD;
+        case 'CRYPTOLITUSD':
+            return Ic_CRYPTOLITUSD;
+        case 'CRYPTORIPUSD':
+            return Ic_CRYPTORIPUSD;
+        case 'CRYTRXUSD':
+            return Ic_CRYTRXUSD;
+        case 'CRYXLMUSD':
+            return Ic_CRYXLMUSD;
+        case 'CRYXMRUSD':
+            return Ic_CRYXMRUSD;
+        case 'CRYXRPUSD':
+            return Ic_CRYXRPUSD;
+        case 'CRYZECUSD':
+            return Ic_CRYZECUSD;
+        case 'ENERGYOILBRENT':
+            return Ic_ENERGYOILBRENT;
+        case 'ENERGYOILUSD':
+            return Ic_ENERGYOILUSD;
+        case 'ENERGYOILWEST':
+            return Ic_ENERGYOILWEST;
+        case 'FRXAUDCAD':
+            return Ic_FRXAUDCAD;
+        case 'FRXAUDCHF':
+            return Ic_FRXAUDCHF;
+        case 'FRXAUDJPY':
+            return Ic_FRXAUDJPY;
+        case 'FRXAUDNZD':
+            return Ic_FRXAUDNZD;
+        case 'FRXAUDPLN':
+            return Ic_FRXAUDPLN;
+        case 'FRXAUDSGD':
+            return Ic_FRXAUDSGD;
+        case 'FRXAUDUSD':
+            return Ic_FRXAUDUSD;
+        case 'FRXBROUSD':
+            return Ic_FRXBROUSD;
+        case 'FRXCADCHF':
+            return Ic_FRXCADCHF;
+        case 'FRXCADJPY':
+            return Ic_FRXCADJPY;
+        case 'FRXCHFJPY':
+            return Ic_FRXCHFJPY;
+        case 'FRXCHFJYP':
+            return Ic_FRXCHFJYP;
+        case 'FRXEURAUD':
+            return Ic_FRXEURAUD;
+        case 'FRXEURCAD':
+            return Ic_FRXEURCAD;
+        case 'FRXEURCHF':
+            return Ic_FRXEURCHF;
+        case 'FRXEURGBP':
+            return Ic_FRXEURGBP;
+        case 'FRXEURHDK':
+            return Ic_FRXEURHDK;
+        case 'FRXEURHKD':
+            return Ic_FRXEURHKD;
+        case 'FRXEURILS':
+            return Ic_FRXEURILS;
+        case 'FRXEURJPY':
+            return Ic_FRXEURJPY;
+        case 'FRXEURMXN':
+            return Ic_FRXEURMXN;
+        case 'FRXEURNOK':
+            return Ic_FRXEURNOK;
+        case 'FRXEURNZD':
+            return Ic_FRXEURNZD;
+        case 'FRXEURSEK':
+            return Ic_FRXEURSEK;
+        case 'FRXEURSGD':
+            return Ic_FRXEURSGD;
+        case 'FRXEURTRY':
+            return Ic_FRXEURTRY;
+        case 'FRXEURUSD':
+            return Ic_FRXEURUSD;
+        case 'FRXEURZAR':
+            return Ic_FRXEURZAR;
+        case 'FRXGBPAUD':
+            return Ic_FRXGBPAUD;
+        case 'FRXGBPCAD':
+            return Ic_FRXGBPCAD;
+        case 'FRXGBPCHF':
+            return Ic_FRXGBPCHF;
+        case 'FRXGBPJPY':
+            return Ic_FRXGBPJPY;
+        case 'FRXGBPNOK':
+            return Ic_FRXGBPNOK;
+        case 'FRXGBPNZD':
+            return Ic_FRXGBPNZD;
+        case 'FRXGBPPLN':
+            return Ic_FRXGBPPLN;
+        case 'FRXGBPSEK':
+            return Ic_FRXGBPSEK;
+        case 'FRXGBPSGD':
+            return Ic_FRXGBPSGD;
+        case 'FRXGBPTRY':
+            return Ic_FRXGBPTRY;
+        case 'FRXGBPUSD':
+            return Ic_FRXGBPUSD;
+        case 'FRXGBPZD':
+            return Ic_FRXGBPZD;
+        case 'FRXGPBSGD':
+            return Ic_FRXGPBSGD;
+        case 'FRXHDKJPY':
+            return Ic_FRXHDKJPY;
+        case 'FRXHKDJPY':
+            return Ic_FRXHKDJPY;
+        case 'FRXNZDCAD':
+            return Ic_FRXNZDCAD;
+        case 'FRXNZDCHF':
+            return Ic_FRXNZDCHF;
+        case 'FRXNZDJPY':
+            return Ic_FRXNZDJPY;
+        case 'FRXNZDSGD':
+            return Ic_FRXNZDSGD;
+        case 'FRXNZDUSD':
+            return Ic_FRXNZDUSD;
+        case 'FRXSGDJPY':
+            return Ic_FRXSGDJPY;
+        case 'FRXUSDCAD':
+            return Ic_FRXUSDCAD;
+        case 'FRXUSDCHF':
+            return Ic_FRXUSDCHF;
+        case 'FRXUSDCNH':
+            return Ic_FRXUSDCNH;
+        case 'FRXUSDHKD':
+            return Ic_FRXUSDHKD;
+        case 'FRXUSDILS':
+            return Ic_FRXUSDILS;
+        case 'FRXUSDJPY':
+            return Ic_FRXUSDJPY;
+        case 'FRXUSDMSX':
+            return Ic_FRXUSDMSX;
+        case 'FRXUSDMXN':
+            return Ic_FRXUSDMXN;
+        case 'FRXUSDNOK':
+            return Ic_FRXUSDNOK;
+        case 'FRXUSDPLN':
+            return Ic_FRXUSDPLN;
+        case 'FRXUSDRUB':
+            return Ic_FRXUSDRUB;
+        case 'FRXUSDSEK':
+            return Ic_FRXUSDSEK;
+        case 'FRXUSDSGD':
+            return Ic_FRXUSDSGD;
+        case 'FRXUSDTHB':
+            return Ic_FRXUSDTHB;
+        case 'FRXUSDTRY':
+            return Ic_FRXUSDTRY;
+        case 'FRXUSDZAR':
+            return Ic_FRXUSDZAR;
+        case 'FRXXAGUSD':
+            return Ic_FRXXAGUSD;
+        case 'FRXXAUUSD':
+            return Ic_FRXXAUUSD;
+        case 'FRXXPDUSD':
+            return Ic_FRXXPDUSD;
+        case 'FRXXPTUSD':
+            return Ic_FRXXPTUSD;
+        case 'JD10':
+            return Ic_JD10;
+        case 'JD100':
+            return Ic_JD100;
+        case 'JD150':
+            return Ic_JD150;
+        case 'JD200':
+            return Ic_JD200;
+        case 'JD25':
+            return Ic_JD25;
+        case 'JD50':
+            return Ic_JD50;
+        case 'JD75':
+            return Ic_JD75;
+        case 'OTC_AEX':
+            return Ic_OTC_AEX;
+        case 'OTC_AS51':
+            return Ic_OTC_AS51;
+        case 'OTC_AUSTRALIA_200':
+            return Ic_OTC_AUSTRALIA_200;
+        case 'OTC_DJI':
+            return Ic_OTC_DJI;
+        case 'OTC_EUR_50':
+            return Ic_OTC_EUR_50;
+        case 'OTC_EUR':
+            return Ic_OTC_EUR;
+        case 'OTC_FCHI':
+            return Ic_OTC_FCHI;
+        case 'OTC_FRANCE_40':
+            return Ic_OTC_FRANCE_40;
+        case 'OTC_FTSE':
+            return Ic_OTC_FTSE;
+        case 'OTC_GDAXI':
+            return Ic_OTC_GDAXI;
+        case 'OTC_GERMANY_30':
+            return Ic_OTC_GERMANY_30;
+        case 'OTC_HSI':
+            return Ic_OTC_HSI;
+        case 'OTC_IBEX35':
+            return Ic_OTC_IBEX35;
+        case 'OTC_N225':
+            return Ic_OTC_N225;
+        case 'OTC_NDX':
+            return Ic_OTC_NDX;
+        case 'OTC_NETHERLAND_25':
+            return Ic_OTC_NETHERLAND_25;
+        case 'OTC_SPAIN_35':
+            return Ic_OTC_SPAIN_35;
+        case 'OTC_SPC':
+            return Ic_OTC_SPC;
+        case 'OTC_SSMI':
+            return Ic_OTC_SSMI;
+        case 'OTC_SX5E':
+            return Ic_OTC_SX5E;
+        case 'OTC_UK_100':
+            return Ic_OTC_UK_100;
+        case 'OTC_US_30':
+            return Ic_OTC_US_30;
+        case 'OTC_US_500':
+            return Ic_OTC_US_500;
+        case 'OTC_US_TECH_10':
+            return Ic_OTC_US_TECH_10;
+        case '0':
+            return Ic_R_10;
+        case 'R_100':
+            return Ic_R_100;
+        case 'R_25':
+            return Ic_R_25;
+        case 'R_50':
+            return Ic_R_50;
+        case 'R_75':
+            return Ic_R_75;
+        case 'RB_100':
+            return Ic_RB_100;
+        case 'RB_200':
+            return Ic_RB_200;
+        case 'RDBEAR':
+            return Ic_RDBEAR;
+        case 'RDBULL':
+            return Ic_RDBULL;
+        case 'STPRNG':
+            return Ic_STPRNG;
+        case 'WLDAUD':
+            return Ic_WLDAUD;
+        case 'WLDEUR':
+            return Ic_WLDEUR;
+        case 'WLDGBP':
+            return Ic_WLDGBP;
+        case 'WLDUSD':
+            return Ic_WLDUSD;
+        case 'WLDXAU':
+            return Ic_WLDXAU;
     }
 }

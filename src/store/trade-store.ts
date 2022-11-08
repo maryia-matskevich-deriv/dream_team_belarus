@@ -278,7 +278,7 @@ export default class TradeStore extends BaseStore {
             themeChangeListener: action.bound,
             resetErrorServices: action.bound,
             onMount: action.bound,
-            manageMxMltRemovalNotification: action.bound,
+            // manageMxMltRemovalNotification: action.bound,
             setChartStatus: action.bound,
             initAccountCurrency: action.bound,
             onUnmount: override,
@@ -941,9 +941,9 @@ export default class TradeStore extends BaseStore {
             this.stop_out = limit_order?.stop_out?.order_amount;
         }
 
-        if (!this.main_barrier || !(this.main_barrier.shade !== 'NONE_SINGLE')) {
-            this.setMainBarrier(response.echo_req);
-        }
+        // if (!this.main_barrier || !(this.main_barrier.shade !== 'NONE_SINGLE')) {
+        //     this.setMainBarrier(response.echo_req);
+        // }
 
         if (response.error) {
             const error_id = getProposalErrorField(response);
@@ -1088,7 +1088,7 @@ export default class TradeStore extends BaseStore {
         if (this.is_trade_component_mounted && this.should_skip_prepost_lifecycle) {
             return;
         }
-        this.root_store.notifications.setShouldShowPopups(false);
+        // this.root_store.notifications.setShouldShowPopups(false);
         this.onPreSwitchAccount(this.preSwitchAccountListener);
         this.onSwitchAccount(this.accountSwitcherListener);
         this.onLogout(this.logoutListener);
@@ -1099,33 +1099,33 @@ export default class TradeStore extends BaseStore {
         runInAction(async () => {
             this.is_trade_component_mounted = true;
             await this.prepareTradeStore();
-            this.root_store.notifications.setShouldShowPopups(true);
+            // this.root_store.notifications.setShouldShowPopups(true);
         });
         // TODO: remove this function when the closure of MX and MLT accounts is completed.
-        this.manageMxMltRemovalNotification();
+        // this.manageMxMltRemovalNotification();
     }
 
-    manageMxMltRemovalNotification() {
-        const { addNotificationMessage, client_notifications, notification_messages, unmarkNotificationMessage } =
-            this.root_store.notifications;
-        const get_notification_messages = JSON.parse(localStorage.getItem('notification_messages'));
-        const { has_iom_account, has_malta_account, is_logged_in } = this.root_store.client;
-        unmarkNotificationMessage({ key: 'close_mx_mlt_account' });
-        if (get_notification_messages !== null && is_logged_in && (has_iom_account || has_malta_account)) {
-            when(
-                () => is_logged_in && notification_messages.length === 0,
-                () => {
-                    const hidden_close_account_notification =
-                        parseInt(localStorage.getItem('hide_close_mx_mlt_account_notification')) === 1;
-                    const should_retain_notification =
-                        (has_iom_account || has_malta_account) && !hidden_close_account_notification;
-                    if (should_retain_notification) {
-                        addNotificationMessage(client_notifications.close_mx_mlt_account);
-                    }
-                }
-            );
-        }
-    }
+    // manageMxMltRemovalNotification() {
+    //     const { addNotificationMessage, client_notifications, notification_messages, unmarkNotificationMessage } =
+    //         this.root_store.notifications;
+    //     const get_notification_messages = JSON.parse(localStorage.getItem('notification_messages'));
+    //     const { has_iom_account, has_malta_account, is_logged_in } = this.root_store.client;
+    //     unmarkNotificationMessage({ key: 'close_mx_mlt_account' });
+    //     if (get_notification_messages !== null && is_logged_in && (has_iom_account || has_malta_account)) {
+    //         when(
+    //             () => is_logged_in && notification_messages.length === 0,
+    //             () => {
+    //                 const hidden_close_account_notification =
+    //                     parseInt(localStorage.getItem('hide_close_mx_mlt_account_notification')) === 1;
+    //                 const should_retain_notification =
+    //                     (has_iom_account || has_malta_account) && !hidden_close_account_notification;
+    //                 if (should_retain_notification) {
+    //                     addNotificationMessage(client_notifications.close_mx_mlt_account);
+    //                 }
+    //             }
+    //         );
+    //     }
+    // }
 
     setChartStatus(status) {
         this.is_chart_loading = status;
