@@ -96,7 +96,8 @@ class Validator {
             options: is_rule_string ? {} : rule[1] || {},
         };
 
-        rule_object.validator = rule_object.name === 'custom' ? rule[1].func : getPreBuildDVRs()[rule_object.name].func;
+        rule_object.validator =
+            rule_object.name === 'custom' ? rule[1].func : getPreBuildDVRs()?.[rule_object.name].func;
 
         return rule_object;
     }
