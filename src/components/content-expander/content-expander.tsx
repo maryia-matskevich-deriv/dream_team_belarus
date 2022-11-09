@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 import { CSSTransition } from 'react-transition-group';
 import Text from '../text/text';
-import IcChevronDown from 'assets/icons/common/ic-chevron-down.svg';
+import IcChevronDown from 'assets/icons/common/ic-chevron-down.png';
 
 type TContentExpander = {
     className?: string;

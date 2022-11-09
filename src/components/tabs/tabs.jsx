@@ -108,6 +108,7 @@ const Tabs = ({
     } else {
         tab_width = fit_content ? '150px' : `${(100 / valid_children.length).toFixed(2)}%`;
     }
+    const ScrollableDiv = is_scrollable ? 'div' : React.Fragment;
 
     return (
         <div
@@ -132,10 +133,7 @@ const Tabs = ({
                     })}
                     ref={tabs_wrapper_ref}
                 >
-                    <div
-                        style={{ overflowX: is_scrollable ? 'auto' : 'hidden', height: '354px' }}
-                        className='dc-themed-scrollbars-wrapper'
-                    >
+                    <ScrollableDiv className='dc-themed-scrollbars-wrapper'>
                         {React.Children.map(children, (child, index) => {
                             if (!child) return null;
                             const { count, header_content, icon, label, id } = child.props;
@@ -175,7 +173,7 @@ const Tabs = ({
                                 style={active_line_style}
                             />
                         )}
-                    </div>
+                    </ScrollableDiv>
                 </ul>
             </div>
             <div

@@ -10,7 +10,7 @@ import { Localize } from 'translations';
 import { getCurrencyDisplayCode } from 'utils';
 import AccountSwitcherMobile from './account-switcher/account-switcher-mobile.jsx';
 import { AccountSwitcher } from './account-switcher';
-import { getCurrencyIcon } from './constants/currency-icons-config';
+import { getCurrencyIcon } from 'components/icon';
 import IcLock from 'assets/icons/common/ic-lock.svg';
 import IcChevronDownBold from 'assets/icons/common/ic-chevron-down-bold.svg';
 

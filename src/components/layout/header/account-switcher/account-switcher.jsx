@@ -17,7 +17,7 @@ import { getExchangeRate } from 'utils/Utils/ExchangeCurrencyRate/exchange_curre
 import AccountList from './account-switcher-account-list.jsx';
 import AccountWrapper from './account-switcher-account-wrapper.jsx';
 import { getSortedAccountList, getSortedCFDList, isDemo } from './helpers';
-import { getCurrencyIcon } from '../constants/currency-icons-config.js';
+import { getCurrencyIcon } from 'components/icon';
 import IcDeriv from 'assets/icons/common/ic-deriv.svg';
 import IcLogout from 'assets/icons/common/ic-logout.svg';
 
@@ -57,9 +57,7 @@ const AccountSwitcher = ({ is_mobile, is_visible }) => {
         should_show_real_accounts_list,
     } = ui;
 
-    const [active_tab_index, setActiveTabIndex] = React.useState(
-        !is_virtual || should_show_real_accounts_list ? 0 : 1
-    );
+    const [active_tab_index, setActiveTabIndex] = React.useState(!is_virtual || should_show_real_accounts_list ? 0 : 1);
     const [is_deriv_demo_visible, setDerivDemoVisible] = React.useState(true);
     const [is_deriv_real_visible, setDerivRealVisible] = React.useState(true);
     const [exchanged_rate_demo, setExchangedRateDemo] = React.useState(1);
@@ -271,11 +269,7 @@ const AccountSwitcher = ({ is_mobile, is_visible }) => {
                         <div key={index} className='acc-switcher__new-account'>
                             <img src={IcDeriv} width={24} height={24} />
                             <Text size='xs' color='general' className='acc-switcher__new-account-text'>
-                                {getAccountTitle(
-                                    account,
-                                    { account_residence: client_residence },
-                                    country_standpoint
-                                )}
+                                {getAccountTitle(account, { account_residence: client_residence }, country_standpoint)}
                             </Text>
                             <Button
                                 id='dt_core_account-switcher_add-new-account'
@@ -290,23 +284,21 @@ const AccountSwitcher = ({ is_mobile, is_visible }) => {
                             </Button>
                         </div>
                     ))}
-                    {!canUpgrade() &&
-                        canOpenMulti() &&
-                        (!is_eu || (is_eu && can_change_fiat_currency)) && (
-                            <Button
-                                className='acc-switcher__btn'
-                                secondary
-                                onClick={
-                                    has_any_real_account && !hasSetCurrency()
-                                        ? setAccountCurrency
-                                        : () => openRealAccountSignup('manage')
-                                }
-                            >
-                                {has_fiat && available_crypto_currencies?.length === 0
-                                    ? localize('Manage account')
-                                    : localize('Add or manage account')}
-                            </Button>
-                        )}
+                    {!canUpgrade() && canOpenMulti() && (!is_eu || (is_eu && can_change_fiat_currency)) && (
+                        <Button
+                            className='acc-switcher__btn'
+                            secondary
+                            onClick={
+                                has_any_real_account && !hasSetCurrency()
+                                    ? setAccountCurrency
+                                    : () => openRealAccountSignup('manage')
+                            }
+                        >
+                            {has_fiat && available_crypto_currencies?.length === 0
+                                ? localize('Manage account')
+                                : localize('Add or manage account')}
+                        </Button>
+                    )}
                 </AccountWrapper>
             </React.Fragment>
         </div>
@@ -324,7 +316,7 @@ const AccountSwitcher = ({ is_mobile, is_visible }) => {
                         into a single reusable AccountListItem component */}
                 <div label={localize('Real')} id='real_account_tab'>
                     <DesktopWrapper>
-                        <div style={{ overflowY: 'auto', height: '354px' }}>{real_accounts}</div>
+                        <div style={{ overflowY: 'auto', maxHeight: '354px' }}>{real_accounts}</div>
                     </DesktopWrapper>
                     <MobileWrapper>
                         <div className='acc-switcher__list-container'>{real_accounts}</div>
@@ -332,7 +324,7 @@ const AccountSwitcher = ({ is_mobile, is_visible }) => {
                 </div>
                 <div label={localize('Demo')} id='dt_core_account-switcher_demo-tab'>
                     <DesktopWrapper>
-                        <div style={{ overflowY: 'auto', height: '354px' }}>{demo_accounts}</div>
+                        <div style={{ overflowY: 'auto', maxHeight: '354px' }}>{demo_accounts}</div>
                     </DesktopWrapper>
                     <MobileWrapper>
                         <div className='acc-switcher__list-container'>{demo_accounts}</div>
