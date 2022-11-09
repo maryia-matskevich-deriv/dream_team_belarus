@@ -1,3 +1,4 @@
-import { getIcon } from './icons';
+import { getAssetIcon, getCurrencyIcon } from './icons';
 
-export {getIcon};
+export { getAssetIcon };
+export { getCurrencyIcon };

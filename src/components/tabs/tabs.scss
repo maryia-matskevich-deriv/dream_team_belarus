@@ -20,6 +20,7 @@
         line-height: 38px;
         display: flex;
         position: relative;
+        padding-left: 0;
         @include mobile {
             justify-content: center;
         }
