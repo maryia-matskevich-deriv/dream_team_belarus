@@ -1,6 +1,7 @@
 {
   "name": "dream_team_belarus",
   "version": "0.1.0",
+  "homepage": "https://maryiafrantsava-binary.github.io/dream_team_belarus/",
   "private": true,
   "dependencies": {
     "@deriv/api-types": "^1.0.57",
@@ -44,7 +45,9 @@
     "start": "sudo PORT=443 HTTPS=true react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
@@ -72,6 +75,7 @@
     "eslint": "^8.25.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-react": "^7.31.10",
+    "gh-pages": "^4.0.0",
     "jest-sonar-reporter": "^2.0.0",
     "sass": "^1.55.0"
   }

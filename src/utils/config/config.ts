@@ -39,7 +39,9 @@ export const isProduction = () => {
 };
 
 export const isTestLink = () => {
-    return /^((.*)\.binary\.sx)$/i.test(window.location.hostname);
+    return (
+        /^((.*)\.binary\.sx)$/i.test(window.location.hostname) || /^((.*)\.github\.io)$/i.test(window.location.hostname)
+    );
 };
 
 export const getAppId = () => {
@@ -62,6 +64,8 @@ export const getAppId = () => {
         app_id = isBot() ? 19112 : domain_app_ids[current_domain as keyof typeof domain_app_ids] || 16303; // it's being used in endpoint chrome extension - please do not remove
     } else if (/localhost/i.test(window.location.hostname)) {
         app_id = 17044;
+    } else if (/github/i.test(window.location.hostname)) {
+        app_id = 33661;
     } else {
         window.localStorage.removeItem('config.default_app_id');
         app_id = (isBot() ? 19111 : domain_app_ids[current_domain as keyof typeof domain_app_ids]) || 16929;
