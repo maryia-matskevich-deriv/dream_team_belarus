@@ -6,10 +6,11 @@ import { useStore } from 'store';
 import 'semantic-ui-css/semantic.min.css';
 import { getAssetIcon } from 'components/icon';
 import { ActiveSymbols } from '@deriv/api-types';
-import { Dropdown } from 'semantic-ui-react';
+import { Dropdown, Grid } from 'semantic-ui-react';
 import { localize } from 'translations';
 import { getAvailableContractTypes } from 'store/trading/Helpers/contract-type';
 import { unsupported_contract_types_list } from 'utils';
+import PriceDisplay from './price-display/price-display';
 
 const Trader = () => {
     const [is_loading, setIsLoading] = React.useState(false);
@@ -19,6 +20,7 @@ const Trader = () => {
         contract_type,
         contract_types_list,
         wsSendRequest,
+        wsSubscribe,
         onChange,
         onMount,
         symbol,
@@ -68,40 +70,48 @@ const Trader = () => {
 
     return (
         <div className={styles.traderContainer}>
-            <div className={styles.traderContainer_tradeTypes}>
-                <div className={styles.traderContainer_tradeTypes_select}>
-                    <Dropdown
-                        placeholder={localize('Select symbol') as string}
-                        loading={is_loading}
-                        disabled={is_loading}
-                        fluid
-                        search
-                        selection
-                        options={symbol_dropdown_options}
-                        className='quick-strategy__dropdown quick-strategy__leading'
-                        onChange={(e, { value }) => updateSymbol(value as string)}
-                        value={symbol}
-                    />
-                </div>
+            <Grid columns={3} padded relaxed stackable className={styles.grid} centered verticalAlign='middle'>
+                <Grid.Row>
+                    <Grid.Column>
+                        <Dropdown
+                            placeholder={localize('Select symbol') as string}
+                            loading={is_loading}
+                            disabled={is_loading}
+                            fluid
+                            search
+                            selection
+                            options={symbol_dropdown_options}
+                            onChange={(e, { value }) => updateSymbol(value as string)}
+                            value={symbol}
+                        />
+                    </Grid.Column>
+                    <Grid.Column>
+                        <Dropdown
+                            placeholder={localize('Select trade type') as string}
+                            loading={is_loading}
+                            disabled={is_loading}
+                            fluid
+                            search
+                            selection
+                            options={contract_types_dropdown_options as []}
+                            onChange={(e, { value }) => onChange({ target: { value, name: 'contract_type' } })}
+                            value={contract_type}
+                        />
+                    </Grid.Column>
+                </Grid.Row>
 
-                <div className={styles.traderContainer_tradeTypes_select}>
-                    <Dropdown
-                        placeholder={localize('Select trade type') as string}
-                        loading={is_loading}
-                        disabled={is_loading}
-                        fluid
-                        search
-                        selection
-                        options={contract_types_dropdown_options as []}
-                        className='quick-strategy__dropdown quick-strategy__leading'
-                        onChange={(e, { value }) => onChange({ target: { value, name: 'contract_type' } })}
-                        value={contract_type}
-                    />
-                </div>
-            </div>
-            {/*move Price to separate component*/}
-            <div className={styles.traderContainer_price}>Price</div>
-            <Multipliers />
+                <Grid.Row>
+                    <Grid.Column>
+                        <PriceDisplay symbol={symbol} wsSubscribe={wsSubscribe} />
+                    </Grid.Column>
+                </Grid.Row>
+
+                <Grid.Row>
+                    <Grid.Column>
+                        <Multipliers />
+                    </Grid.Column>
+                </Grid.Row>
+            </Grid>
         </div>
     );
 };

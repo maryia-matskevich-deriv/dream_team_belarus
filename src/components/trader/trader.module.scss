@@ -1,46 +1,7 @@
 .traderContainer {
-    display: flex;
-    flex-direction: column;
-    padding: 1rem;
     margin: 5rem 0.5rem 0 0.5rem;
-    align-items: center;
-    border: 1px solid black;
-    border-radius: 4px;
 
-    &_tradeTypes {
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-        margin-bottom: 1rem;
-        //delete selects later
-        &_select {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 35%;
-            max-width: 330px;
-            height: 2rem;
-            border-radius: 4px;
-        }
-    }
-
-    //TODO move price to separate component
-    &_price {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 5rem;
-        height: 2rem;
-        border-radius: 4px;
-        background: #ff444f;
-    }
-
-    &_paramsWrapper {
-        display: flex;
-        margin: 1rem 0;
-    }
-    &_buttonsWrapper {
-        display: flex;
-        gap: 1rem;
+    .grid {
+        margin-top: 5rem;
     }
 }
