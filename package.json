@@ -1,7 +1,7 @@
 {
   "name": "dream_team_belarus",
   "version": "0.1.0",
-  "homepage": "https://maryia-binary.github.io/dream_team_belarus/",
+  "homepage": "https://maryiafrantsava-binary.github.io/dream_team_belarus/",
   "private": true,
   "dependencies": {
     "@deriv/api-types": "^1.0.57",
