@@ -2,6 +2,8 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+Deployed at https://maryiafrantsava-binary.github.io/dream_team_belarus
+
 ## Available Scripts
 
 In the project directory, you can run:
