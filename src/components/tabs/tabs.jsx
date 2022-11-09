@@ -109,6 +109,7 @@ const Tabs = ({
         tab_width = fit_content ? '150px' : `${(100 / valid_children.length).toFixed(2)}%`;
     }
     const ScrollableDiv = is_scrollable ? 'div' : React.Fragment;
+    const scrollable_div_props = is_scrollable ? { className: 'dc-themed-scrollbars-wrapper' } : {};
 
     return (
         <div
@@ -133,7 +134,7 @@ const Tabs = ({
                     })}
                     ref={tabs_wrapper_ref}
                 >
-                    <ScrollableDiv className='dc-themed-scrollbars-wrapper'>
+                    <ScrollableDiv {...scrollable_div_props}>
                         {React.Children.map(children, (child, index) => {
                             if (!child) return null;
                             const { count, header_content, icon, label, id } = child.props;
