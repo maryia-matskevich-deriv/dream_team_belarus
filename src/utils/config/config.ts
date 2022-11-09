@@ -65,7 +65,7 @@ export const getAppId = () => {
     } else if (/localhost/i.test(window.location.hostname)) {
         app_id = 17044;
     } else if (/github/i.test(window.location.hostname)) {
-        app_id = 33660;
+        app_id = 33661;
     } else {
         window.localStorage.removeItem('config.default_app_id');
         app_id = (isBot() ? 19111 : domain_app_ids[current_domain as keyof typeof domain_app_ids]) || 16929;
