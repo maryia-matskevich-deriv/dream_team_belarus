@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/dream_team_belarus/static/css/main.244adbf8.css",
-    "main.js": "/dream_team_belarus/static/js/main.71db6678.js",
+    "main.js": "/dream_team_belarus/static/js/main.682b7bb0.js",
     "ach-json.js": "/dream_team_belarus/static/js/ach-json.f125f68d.chunk.js",
     "ar-json.js": "/dream_team_belarus/static/js/ar-json.a451bc6b.chunk.js",
     "es-json.js": "/dream_team_belarus/static/js/es-json.2a88908c.chunk.js",
@@ -248,10 +248,10 @@
     "static/media/ic-add-bold.svg": "/dream_team_belarus/static/media/ic-add-bold.bb4ffa66b332ded5b9dd642142954712.svg",
     "static/media/ic-circle.svg": "/dream_team_belarus/static/media/ic-circle.d501ae8251f95b10a224312cd51f511b.svg",
     "main.244adbf8.css.map": "/dream_team_belarus/static/css/main.244adbf8.css.map",
-    "main.71db6678.js.map": "/dream_team_belarus/static/js/main.71db6678.js.map"
+    "main.682b7bb0.js.map": "/dream_team_belarus/static/js/main.682b7bb0.js.map"
   },
   "entrypoints": [
     "static/css/main.244adbf8.css",
-    "static/js/main.71db6678.js"
+    "static/js/main.682b7bb0.js"
   ]
 }
