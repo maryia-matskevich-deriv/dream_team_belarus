@@ -11,7 +11,7 @@ import { getAvailableContractTypes } from 'store/trading/Helpers/contract-type';
 import { unsupported_contract_types_list } from 'utils';
 import PriceDisplay from './price-display/price-display';
 import TradeParams from './trade-params/trade-params';
-import Multipliers from './trade-types/multipliers';
+import PurchaseButton from '../purchase-button';
 
 const Trader = () => {
     const [is_loading, setIsLoading] = React.useState(false);
@@ -115,9 +115,10 @@ const Trader = () => {
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
-                    <Grid.Column width={8}>
-                        <Multipliers />
-                    </Grid.Column>
+                    {/*<Grid.Column width={8}>*/}
+                        <PurchaseButton />
+                        <PurchaseButton />
+                    {/*</Grid.Column>*/}
                 </Grid.Row>
             </Grid>
         </div>
