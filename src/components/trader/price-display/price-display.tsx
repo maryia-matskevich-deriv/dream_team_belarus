@@ -50,7 +50,7 @@ const PriceDisplay = ({ symbol, wsSubscribe }: TPriceDisplay) => {
             ) : (
                 <>
                     <Text size='m' weight='bold' color={price > prevPrice! ? 'profit-success' : 'loss-danger'}>
-                        {Number(price).toFixed(3)}
+                        {price}
                     </Text>
                     <Label color={price > prevPrice! ? 'teal' : 'red'} size='massive' tag>
                         Price
