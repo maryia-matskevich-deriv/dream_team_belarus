@@ -1,6 +1,5 @@
 import React from 'react';
 import styles from './trader.module.scss';
-import Multipliers from './trade-types/multipliers';
 import { observer } from 'mobx-react-lite';
 import { useStore } from 'store';
 import 'semantic-ui-css/semantic.min.css';
@@ -11,6 +10,8 @@ import { localize } from 'translations';
 import { getAvailableContractTypes } from 'store/trading/Helpers/contract-type';
 import { unsupported_contract_types_list } from 'utils';
 import PriceDisplay from './price-display/price-display';
+import TradeParams from './trade-params/trade-params';
+import Multipliers from './trade-types/multipliers';
 
 const Trader = () => {
     const [is_loading, setIsLoading] = React.useState(false);
@@ -58,12 +59,14 @@ const Trader = () => {
     const contract_types_dropdown_options = trade_types_list.reduce((acc, trade_type) => {
         const contract_types: { [key: string]: string }[] = [];
         trade_type?.contract_types.forEach((contract_type: { text: string; value: string }) => {
-            contract_types.push({
-                key: contract_type.value,
-                label: trade_type.label,
-                text: contract_type.text,
-                value: contract_type.value,
-            });
+            if (contract_types.every(c => c.text !== contract_type.text)) {
+                contract_types.push({
+                    key: contract_type.value,
+                    label: trade_type.label,
+                    text: contract_type.text,
+                    value: contract_type.value,
+                });
+            }
         });
         return [...acc, ...contract_types];
     }, [] as { [key: string]: string }[]);
@@ -101,13 +104,18 @@ const Trader = () => {
                 </Grid.Row>
 
                 <Grid.Row>
-                    <Grid.Column>
+                    <Grid.Column width={8}>
                         <PriceDisplay symbol={symbol} wsSubscribe={wsSubscribe} />
                     </Grid.Column>
                 </Grid.Row>
 
                 <Grid.Row>
-                    <Grid.Column>
+                    <Grid.Column width={8}>
+                        <TradeParams />
+                    </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                    <Grid.Column width={8}>
                         <Multipliers />
                     </Grid.Column>
                 </Grid.Row>

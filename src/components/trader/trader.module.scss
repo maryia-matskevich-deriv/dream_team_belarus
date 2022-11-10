@@ -1,7 +1,21 @@
+@import 'styles/constants';
+@import 'styles/themes';
+@import 'styles/mixins';
+@import 'styles/fonts';
+@import 'styles/devices';
+
 .traderContainer {
     margin: 5rem 0.5rem 0 0.5rem;
+    display: flex;
+    justify-content: center;
+    height: 90vh;
 
     .grid {
         margin-top: 5rem;
+        max-width: 90vw;
+        max-height: 90vh;
+        border-radius: $BORDER_RADIUS * 2;
+        box-shadow: 0 25px 50px -12px rgb(0 0 0 / 25%);
+        background: $color-white;
     }
 }

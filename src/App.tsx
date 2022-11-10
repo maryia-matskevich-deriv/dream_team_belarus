@@ -10,12 +10,14 @@ import './index.scss';
 const App = () => {
     return (
         <div>
-            <Header/>
+            <Header />
             <Routes>
-                <Route index path={'/'} element={<Trader />} />
+                {['/', '/dream_team_belarus/'].map(path => (
+                    <Route path={path} key={path} element={<Trader />} />
+                ))}
                 <Route path={'*'} element={<Page404 />} />
             </Routes>
-            <Footer/>
+            <Footer />
         </div>
     );
 };
