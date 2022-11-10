@@ -599,6 +599,7 @@ export default class TradeStore extends BaseStore {
     onPurchase = debounce(this.processPurchase, 300);
 
     processPurchase(proposal_id, price, type) {
+        console.log('proposal_id, price, type', proposal_id, price, type);
         if (!this.is_purchase_enabled) return;
         if (proposal_id) {
             this.is_purchase_enabled = false;

@@ -8,10 +8,11 @@ import { ActiveSymbols } from '@deriv/api-types';
 import { Dropdown, Grid } from 'semantic-ui-react';
 import { localize } from 'translations';
 import { getAvailableContractTypes } from 'store/trading/Helpers/contract-type';
-import { unsupported_contract_types_list } from 'utils';
+import { isDesktop, unsupported_contract_types_list } from 'utils';
 import PriceDisplay from './price-display/price-display';
 import TradeParams from './trade-params/trade-params';
-import PurchaseButton from '../purchase-button';
+// import Multipliers from './trade-types/multipliers';
+import PurchaseButton from '../../components/purchase-button';
 
 const Trader = () => {
     const [is_loading, setIsLoading] = React.useState(false);
@@ -26,6 +27,9 @@ const Trader = () => {
         onMount,
         symbol,
         updateSymbol,
+        onPurchase,
+        proposal_info,
+        trade_types,
     } = trade;
 
     React.useEffect(() => {
@@ -50,7 +54,7 @@ const Trader = () => {
                         : symbol.market_display_name,
                 text: symbol.display_name,
                 value: symbol.symbol,
-                image: { src: getAssetIcon(symbol.symbol) },
+                image: isDesktop() && { src: getAssetIcon(symbol.symbol) },
                 ...symbol,
             })),
         [active_symbols]
@@ -70,6 +74,15 @@ const Trader = () => {
         });
         return [...acc, ...contract_types];
     }, [] as { [key: string]: string }[]);
+
+    let info, my_type;
+
+    Object.keys(trade_types).map(type => {
+        info = proposal_info[type as keyof typeof proposal_info];
+        my_type = type;
+    });
+
+    console.log('info', info);
 
     return (
         <div className={styles.traderContainer}>
@@ -115,10 +128,9 @@ const Trader = () => {
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
-                    {/*<Grid.Column width={8}>*/}
-                        <PurchaseButton />
-                        <PurchaseButton />
-                    {/*</Grid.Column>*/}
+                    <Grid.Column width={8}>
+                        <PurchaseButton onPurchase={onPurchase} info={info} my_type={my_type} />
+                    </Grid.Column>
                 </Grid.Row>
             </Grid>
         </div>

@@ -10,10 +10,7 @@ const Amount = () => {
         currency,
         basis,
     } = trade;
-    const { currencies_list } = client;
-    console.log('currencies_list', currencies_list);
-    
-
+    const { currencies_list } = client;    
     return (
         <div style={{ display: 'flex' }}>
             <Input 
