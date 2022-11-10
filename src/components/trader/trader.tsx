@@ -8,7 +8,7 @@ import { ActiveSymbols } from '@deriv/api-types';
 import { Dropdown, Grid } from 'semantic-ui-react';
 import { localize } from 'translations';
 import { getAvailableContractTypes } from 'store/trading/Helpers/contract-type';
-import { unsupported_contract_types_list } from 'utils';
+import { isDesktop, unsupported_contract_types_list } from 'utils';
 import PriceDisplay from './price-display/price-display';
 import TradeParams from './trade-params/trade-params';
 // import Multipliers from './trade-types/multipliers';
@@ -54,7 +54,7 @@ const Trader = () => {
                         : symbol.market_display_name,
                 text: symbol.display_name,
                 value: symbol.symbol,
-                image: { src: getAssetIcon(symbol.symbol) },
+                image: isDesktop() && { src: getAssetIcon(symbol.symbol) },
                 ...symbol,
             })),
         [active_symbols]
