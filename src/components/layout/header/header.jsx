@@ -2,12 +2,18 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { observer } from 'mobx-react-lite';
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import DesktopWrapper from 'components/desktop-wrapper';
 import { routes, isMobile, platforms } from 'utils';
 import { AccountActions, MenuLinks, PlatformSwitcher } from '.';
 import platform_config from './constants/platform-config';
 import { useStore } from 'store';
+import MobileWrapper from 'components/mobile-wrapper';
+import { Dropdown, Icon } from 'semantic-ui-react';
+import { PlatformBox } from './platform-dropdown';
+import Text from 'components/text';
+import { localize } from 'translations';
+import 'semantic-ui-css/semantic.min.css';
 
 // TODO: adjust and apply this header
 const Header = () => {
@@ -68,11 +74,57 @@ const Header = () => {
             <div className='header__menu-items'>
                 <div className='header__menu-left'>
                     <DesktopWrapper>
-                        <PlatformSwitcher
-                            platform_config={filterPlatformsForClients(platform_config)}
-                        />
+                        <PlatformSwitcher platform_config={filterPlatformsForClients(platform_config)} />
+                        <MenuLinks is_logged_in={is_logged_in} items={menu_items} />
                     </DesktopWrapper>
-                    <MenuLinks is_logged_in={is_logged_in} items={menu_items} />
+                    <MobileWrapper>
+                        <Dropdown item icon='bars' simple>
+                            <Dropdown.Menu>
+                                <Dropdown.Item>
+                                    <Icon name='dropdown' />
+                                    <span className='text'>{localize('Platforms')}</span>
+                                    <Dropdown.Menu>
+                                        {platform_config.map((platform, idx) => (
+                                            <Dropdown.Item key={idx}>
+                                                {platform.link_to ? (
+                                                    <NavLink
+                                                        to={platform.link_to}
+                                                        // This is here because in routes-config it needs to have children, but not in menu
+                                                        exact={`${platform.link_to === routes.trade}`}
+                                                    >
+                                                        <PlatformBox platform={platform} />
+                                                    </NavLink>
+                                                ) : (
+                                                    <a href={platform.href}>
+                                                        <PlatformBox platform={platform} />
+                                                    </a>
+                                                )}
+                                            </Dropdown.Item>
+                                        ))}
+                                    </Dropdown.Menu>
+                                </Dropdown.Item>
+                                {menu_items.map((item, idx) => {
+                                    const item_text = item.text();
+
+                                    return item.login_only && item.login_only !== is_logged_in ? null : (
+                                        <Dropdown.Item>
+                                            <a key={idx} href={item.link_to || item.href}>
+                                                <React.Fragment>
+                                                    {item_text && (
+                                                        <Text size='m' line_height='xs' title={item_text}>
+                                                            {item.icon}
+                                                            {item_text}
+                                                            {item.logo}
+                                                        </Text>
+                                                    )}
+                                                </React.Fragment>
+                                            </a>
+                                        </Dropdown.Item>
+                                    );
+                                })}
+                            </Dropdown.Menu>
+                        </Dropdown>
+                    </MobileWrapper>
                 </div>
                 <div
                     className={classNames('header__menu-right', {
