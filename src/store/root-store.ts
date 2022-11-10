@@ -7,6 +7,8 @@ import MenuStore from './menu-store';
 import PortfolioStore from './portfolio-store';
 import TradeStore from './trade-store';
 import UIStore from './ui-store';
+import ContractTradeStore from './contract-trade-store';
+import ContractStore from './contract-store';
 
 export class RootStore {
     client: ClientStore;
@@ -16,6 +18,7 @@ export class RootStore {
     ui: UIStore;
     active_symbols: ActiveSymbolsStore;
     trade: TradeStore;
+    contract_trade: ContractTradeStore;
 
     constructor() {
         makeAutoObservable(this);
@@ -26,6 +29,7 @@ export class RootStore {
         this.ui = new UIStore(this);
         this.active_symbols = new ActiveSymbolsStore();
         this.trade = new TradeStore({ root_store: this });
+        this.contract_trade = new ContractTradeStore(this);
     }
 
     hello = 'Hello from the root store';

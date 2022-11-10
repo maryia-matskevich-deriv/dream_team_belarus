@@ -5,6 +5,7 @@ import React from 'react';
 import { Label, Loader } from 'semantic-ui-react';
 import { addComma } from 'utils';
 import styles from './price-display.module.scss';
+import {usePrevious} from '../../../hooks/use-previous';
 
 type TPriceDisplay = {
     symbol: string;
@@ -14,6 +15,8 @@ type TPriceDisplay = {
 const PriceDisplay = ({ symbol, wsSubscribe }: TPriceDisplay) => {
     const [price, setPrice] = React.useState('');
     const [error, setError] = React.useState('');
+    const prevPrice = usePrevious(price);
+
     React.useEffect(() => {
         if (!WS.forgetAll) return;
         WS.forgetAll('ticks').then(() => {
@@ -46,10 +49,10 @@ const PriceDisplay = ({ symbol, wsSubscribe }: TPriceDisplay) => {
                 </Text>
             ) : (
                 <>
-                    <Text size='m' weight='bold' color='profit-success'>
-                        {price}
+                    <Text size='m' weight='bold' color={price > prevPrice! ? 'profit-success' : 'loss-danger'}>
+                        {Number(price).toFixed(3)}
                     </Text>
-                    <Label color='teal' size='massive' tag>
+                    <Label color={price > prevPrice! ? 'teal' : 'red'} size='massive' tag>
                         Price
                     </Label>
                 </>
