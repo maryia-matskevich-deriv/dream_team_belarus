@@ -260,7 +260,6 @@ export default class TradeStore extends BaseStore {
             is_synthetics_available: computed,
             show_digits_stats: computed,
             setMobileDigitView: action.bound,
-            pushPurchaseDataToGtm: action.bound,
             clearPurchaseInfo: action.bound,
             requestProposal: action.bound,
             forgetAllProposal: action.bound,
@@ -287,6 +286,7 @@ export default class TradeStore extends BaseStore {
             has_alternative_source: computed,
             is_multiplier: computed,
             getFirstOpenMarket: action.bound,
+            processNewValuesAsync: action.bound,
         });
 
         // Adds intercept to change min_max value of duration validation
@@ -599,7 +599,6 @@ export default class TradeStore extends BaseStore {
     onPurchase = debounce(this.processPurchase, 300);
 
     processPurchase(proposal_id, price, type) {
-        console.log('proposal_id, price, type', proposal_id, price, type);
         if (!this.is_purchase_enabled) return;
         if (proposal_id) {
             this.is_purchase_enabled = false;
@@ -636,11 +635,7 @@ export default class TradeStore extends BaseStore {
                         if (this.proposal_info[type] && this.proposal_info[type].id !== proposal_id) {
                             throw new Error('Proposal ID does not match.');
                         }
-                        const contract_data = {
-                            ...this.proposal_requests[type],
-                            ...this.proposal_info[type],
-                            buy_price: response.buy.buy_price,
-                        };
+
                         const { contract_id, longcode, start_time } = response.buy;
 
                         // toggle smartcharts to contract mode
@@ -681,7 +676,6 @@ export default class TradeStore extends BaseStore {
                             this.purchase_info = response;
                             this.proposal_requests = {};
                             this.debouncedProposal();
-                            this.pushPurchaseDataToGtm(contract_data);
                             this.is_purchasing_contract = false;
                             return;
                         }
@@ -842,39 +836,6 @@ export default class TradeStore extends BaseStore {
 
     setMobileDigitView(bool) {
         this.is_mobile_digit_view_selected = bool;
-    }
-
-    pushPurchaseDataToGtm(contract_data) {
-        const data = {
-            event: 'buy_contract',
-            bom_ui: 'new',
-            contract: {
-                amount: contract_data.amount,
-                barrier1: contract_data.barrier,
-                barrier2: contract_data.barrier2,
-                basis: contract_data.basis,
-                buy_price: contract_data.buy_price,
-                contract_type: contract_data.contract_type,
-                currency: contract_data.currency,
-                date_expiry: contract_data.date_expiry,
-                date_start: contract_data.date_start,
-                duration: contract_data.duration,
-                duration_unit: contract_data.duration_unit,
-                payout: contract_data.payout,
-                symbol: contract_data.symbol,
-            },
-            settings: {
-                theme: this.root_store.ui.is_dark_mode_on ? 'dark' : 'light',
-                positions_drawer: this.root_store.ui.is_positions_drawer_on ? 'open' : 'closed',
-                chart: {
-                    toolbar_position: this.root_store.ui.is_chart_layout_default ? 'bottom' : 'left',
-                    chart_asset_info: this.root_store.ui.is_chart_asset_info_visible ? 'visible' : 'hidden',
-                    chart_type: this.root_store.contract_trade.chart_type,
-                    granularity: this.root_store.contract_trade.granularity,
-                },
-            },
-        };
-        this.root_store.gtm.pushDataLayer(data);
     }
 
     clearPurchaseInfo() {

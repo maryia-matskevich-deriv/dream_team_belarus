@@ -11,8 +11,8 @@ import { getAvailableContractTypes } from 'store/trading/Helpers/contract-type';
 import { isDesktop, unsupported_contract_types_list } from 'utils';
 import PriceDisplay from './price-display/price-display';
 import TradeParams from './trade-params/trade-params';
+import PurchaseButtons from './purchase-buttons';
 // import Multipliers from './trade-types/multipliers';
-import PurchaseButton from '../../components/purchase-button';
 
 const Trader = () => {
     const [is_loading, setIsLoading] = React.useState(false);
@@ -27,9 +27,6 @@ const Trader = () => {
         onMount,
         symbol,
         updateSymbol,
-        onPurchase,
-        proposal_info,
-        trade_types,
     } = trade;
 
     React.useEffect(() => {
@@ -75,18 +72,9 @@ const Trader = () => {
         return [...acc, ...contract_types];
     }, [] as { [key: string]: string }[]);
 
-    let info, my_type;
-
-    Object.keys(trade_types).map(type => {
-        info = proposal_info[type as keyof typeof proposal_info];
-        my_type = type;
-    });
-
-    console.log('info', info);
-
     return (
         <div className={styles.traderContainer}>
-            <Grid columns={3} padded relaxed stackable className={styles.grid} centered verticalAlign='middle'>
+            <Grid columns={3} relaxed stackable className={styles.grid} centered verticalAlign='middle'>
                 <Grid.Row>
                     <Grid.Column>
                         <Dropdown
@@ -117,19 +105,19 @@ const Trader = () => {
                 </Grid.Row>
 
                 <Grid.Row>
-                    <Grid.Column width={8}>
+                    <Grid.Column width={8} textAlign='center'>
                         <PriceDisplay symbol={symbol} wsSubscribe={wsSubscribe} />
                     </Grid.Column>
                 </Grid.Row>
 
                 <Grid.Row>
-                    <Grid.Column width={8}>
+                    <Grid.Column width={8} textAlign='center'>
                         <TradeParams />
                     </Grid.Column>
                 </Grid.Row>
                 <Grid.Row>
-                    <Grid.Column width={8}>
-                        <PurchaseButton onPurchase={onPurchase} info={info} my_type={my_type} />
+                    <Grid.Column width={8} textAlign='center'>
+                        <PurchaseButtons />
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
