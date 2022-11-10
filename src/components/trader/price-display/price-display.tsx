@@ -3,6 +3,7 @@ import { WS } from 'api/services';
 import Text from 'components/text';
 import React from 'react';
 import { Label, Loader } from 'semantic-ui-react';
+import { addComma } from 'utils';
 import styles from './price-display.module.scss';
 
 type TPriceDisplay = {
@@ -11,7 +12,7 @@ type TPriceDisplay = {
 };
 
 const PriceDisplay = ({ symbol, wsSubscribe }: TPriceDisplay) => {
-    const [price, setPrice] = React.useState<number | null>(null);
+    const [price, setPrice] = React.useState('');
     const [error, setError] = React.useState('');
     React.useEffect(() => {
         if (!WS.forgetAll) return;
@@ -26,11 +27,16 @@ const PriceDisplay = ({ symbol, wsSubscribe }: TPriceDisplay) => {
                 },
                 (response: TicksStreamResponse & { history?: History }) => {
                     if (response.error) setError((response.error as Error).message);
-                    else setPrice((response.history ? response.history.prices?.pop() : response.tick?.quote) || null);
+                    else
+                        setPrice(
+                            response.history ? addComma(response.history.prices?.pop()) : addComma(response.tick?.quote)
+                        );
                 }
             );
         });
     }, [symbol]);
+
+    if (!price) return <Loader active inline='centered' />;
 
     return (
         <div className={styles.price}>
@@ -40,10 +46,10 @@ const PriceDisplay = ({ symbol, wsSubscribe }: TPriceDisplay) => {
                 </Text>
             ) : (
                 <>
-                    <Text size='s' weight='bold' color='profit-success'>
-                        {price || <Loader active inline='centered' />}
+                    <Text size='m' weight='bold' color='profit-success'>
+                        {price}
                     </Text>
-                    <Label color='teal' size='big' tag>
+                    <Label color='teal' size='massive' tag>
                         Price
                     </Label>
                 </>
