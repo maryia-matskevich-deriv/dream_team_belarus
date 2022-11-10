@@ -106,7 +106,13 @@ body {
 /** @define theme */
 .theme {
     &--light {
-        background: $color-white;
+        background: linear-gradient(
+            153deg,
+            rgba(51, 48, 0, 1) 0%,
+            rgba(244, 67, 54, 1) 27%,
+            rgba(231, 242, 239, 1) 88%,
+            rgba(231, 242, 239, 1) 100%
+        );
     }
     &--dark {
         background: $color-black;

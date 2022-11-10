@@ -14,7 +14,7 @@ const PriceDisplay = ({ symbol, wsSubscribe }: TPriceDisplay) => {
     const [price, setPrice] = React.useState<number | null>(null);
     const [error, setError] = React.useState('');
     React.useEffect(() => {
-        if (typeof WS.forgetAll !== 'function') return;
+        if (!WS.forgetAll) return;
         WS.forgetAll('ticks').then(() => {
             wsSubscribe(
                 {
