@@ -6,7 +6,7 @@ import { Dropdown, Input } from 'semantic-ui-react';
 import { getDurationMinMaxValues, toMoment } from 'utils';
 
 type TChangeEventObject = { target: { value: any; name?: string } };
-type TTextValueObject = { text: string; value: string };
+export type TTextValueObject = { text: string; value: string };
 
 const Duration = () => {
     const { trade, ui } = useStore();
