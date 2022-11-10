@@ -5,7 +5,8 @@ import React from 'react';
 import { Label, Loader } from 'semantic-ui-react';
 import { addComma } from 'utils';
 import styles from './price-display.module.scss';
-import {usePrevious} from '../../../hooks/use-previous';
+import { usePrevious } from '../../../hooks/use-previous';
+import { Icon } from 'semantic-ui-react';
 
 type TPriceDisplay = {
     symbol: string;
@@ -50,7 +51,7 @@ const PriceDisplay = ({ symbol, wsSubscribe }: TPriceDisplay) => {
             ) : (
                 <>
                     <Text size='m' weight='bold' color={price > prevPrice! ? 'profit-success' : 'loss-danger'}>
-                        {price}
+                        {price} <Icon name={price > prevPrice! ? 'angle up' : 'angle down'} />
                     </Text>
                     <Label color={price > prevPrice! ? 'teal' : 'red'} size='massive' tag>
                         Price
