@@ -107,17 +107,15 @@ const Header = () => {
                                     const item_text = item.text();
 
                                     return item.login_only && item.login_only !== is_logged_in ? null : (
-                                        <Dropdown.Item>
+                                        <Dropdown.Item key={item_text}>
                                             <a key={idx} href={item.link_to || item.href}>
-                                                <React.Fragment>
-                                                    {item_text && (
-                                                        <Text size='m' line_height='xs' title={item_text}>
-                                                            {item.icon}
-                                                            {item_text}
-                                                            {item.logo}
-                                                        </Text>
-                                                    )}
-                                                </React.Fragment>
+                                                {item_text && (
+                                                    <Text size='m' line_height='xs' title={item_text}>
+                                                        {item.icon}
+                                                        {item_text}
+                                                        {item.logo}
+                                                    </Text>
+                                                )}
                                             </a>
                                         </Dropdown.Item>
                                     );

@@ -132,7 +132,14 @@ export const getContractTypesConfig: TGetContractTypesConfig = symbol => ({
 
 export const getContractCategoriesConfig = () => ({
     [localize('Multipliers') as string]: ['multiplier'],
-    [localize('Ups & Downs') as string]: ['rise_fall', 'rise_fall_equal', 'run_high_low', 'reset', 'asian', 'callputspread'],
+    [localize('Ups & Downs') as string]: [
+        'rise_fall',
+        'rise_fall_equal',
+        'run_high_low',
+        'reset',
+        'asian',
+        'callputspread',
+    ],
     [localize('Highs & Lows') as string]: ['high_low', 'touch', 'tick_high_low'],
     [localize('Ins & Outs') as string]: ['end', 'stay'],
     [localize('Look Backs') as string]: ['lb_high_low', 'lb_put', 'lb_call'],
@@ -352,7 +359,7 @@ export const getUnsupportedContracts = () => ({
     },
 });
 
-type TGetSupportedContracts = keyof ReturnType<typeof getSupportedContracts>;
+export type TGetSupportedContracts = keyof ReturnType<typeof getSupportedContracts>;
 export const getSupportedContracts = (is_high_low?: boolean) => ({
     CALL: {
         name: is_high_low ? <Localize i18n_default_text='Higher' /> : <Localize i18n_default_text='Rise' />,

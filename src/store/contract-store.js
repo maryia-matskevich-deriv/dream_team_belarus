@@ -10,11 +10,11 @@ import {
     getDisplayStatus,
     getContractUpdateConfig,
     getContractValidationRules,
-    isBarrierSupported,
     getEndTime,
 } from 'utils';
 import BaseStore from './base-store';
 import { WS } from 'api/services';
+import { getLimitOrder } from './helpers/limit-orders';
 
 export default class ContractStore extends BaseStore {
     constructor(root_store, { contract_id }) {
@@ -41,7 +41,6 @@ export default class ContractStore extends BaseStore {
             contract_update_history: observable.ref,
             margin: observable,
             barriers_array: observable.shallow,
-            markers_array: observable.shallow,
             marker: observable.ref,
             populateConfig: action.bound,
             populateContractUpdateConfig: action.bound,
@@ -81,9 +80,8 @@ export default class ContractStore extends BaseStore {
     contract_update_config = {};
 
     // ---- chart props
-    margin;
+    margin = 0;
     barriers_array = [];
-    markers_array = [];
     marker = null;
 
     // ---- Normal properties ---
@@ -95,11 +93,8 @@ export default class ContractStore extends BaseStore {
         this.end_time = getEndTime(this.contract_info);
 
         // TODO: don't update the barriers & markers if they are not changed
-        this.updateBarriersArray(contract_info, this.root_store.ui.is_dark_mode_on);
-        // this.markers_array = createChartMarkers(this.contract_info);
         this.marker = calculate_marker(this.contract_info);
 
-        // this.contract_config = getChartConfig(this.contract_info);
         this.display_status = getDisplayStatus(this.contract_info);
         this.is_ended = isEnded(this.contract_info);
         this.is_digit_contract = isDigitContract(this.contract_info.contract_type);
@@ -148,54 +143,6 @@ export default class ContractStore extends BaseStore {
         );
     }
 
-    updateBarriersArray(contract_info, is_dark_mode) {
-        if (!this.barriers_array.length) {
-            this.barriers_array = this.createBarriersArray(contract_info, is_dark_mode);
-            return;
-        }
-
-        const main_barrier = this.barriers_array[0];
-        if (contract_info) {
-            const { contract_type, barrier, high_barrier, low_barrier } = contract_info;
-
-            if (isBarrierSupported(contract_type) && (barrier || high_barrier)) {
-                main_barrier.updateBarriers(barrier || high_barrier, low_barrier);
-                main_barrier.updateBarrierColor(is_dark_mode);
-            }
-            if (
-                contract_info.contract_id &&
-                contract_info.contract_id === this.root_store.contract_replay.contract_id
-            ) {
-                // setLimitOrderBarriers({
-                //     barriers: this.barriers_array,
-                //     contract_info,
-                //     contract_type,
-                //     is_over: true,
-                // });
-            }
-        }
-    }
-
-    // createBarriersArray = (contract_info, is_dark_mode) => {
-    //     let barriers = [];
-    //     if (contract_info) {
-    //         const { contract_type, barrier, entry_spot, high_barrier, low_barrier } = contract_info;
-
-    //         if (isBarrierSupported(contract_type) && (barrier || high_barrier || entry_spot)) {
-    //             // create barrier only when it's available in response
-    //             const main_barrier = new ChartBarrierStore(barrier || high_barrier || entry_spot, low_barrier, null, {
-    //                 color: is_dark_mode ? BARRIER_COLORS.DARK_GRAY : BARRIER_COLORS.GRAY,
-    //                 line_style: BARRIER_LINE_STYLES.SOLID,
-    //                 not_draggable: true,
-    //             });
-
-    //             main_barrier.updateBarrierShade(true, contract_type);
-    //             barriers = [main_barrier];
-    //         }
-    //     }
-    //     return barriers;
-    // };
-
     clearContractUpdateConfigValues() {
         Object.assign(this, getContractUpdateConfig(this.contract_info));
         this.validation_errors.contract_update_stop_loss = [];
@@ -207,28 +154,28 @@ export default class ContractStore extends BaseStore {
         this.validateProperty(name, this[name]);
     }
 
-    // updateLimitOrder() {
-    //     // const limit_order = getLimitOrder(this);
+    updateLimitOrder() {
+        const limit_order = getLimitOrder(this);
 
-    //     WS.contractUpdate(this.contract_id, limit_order).then(response => {
-    //         if (response.error) {
-    //             this.root_store.common.setServicesError({
-    //                 type: response.msg_type,
-    //                 ...response.error,
-    //             });
-    //             return;
-    //         }
+        WS.contractUpdate(this.contract_id, limit_order).then(response => {
+            if (response.error) {
+                this.root_store.common.setServicesError({
+                    type: response.msg_type,
+                    ...response.error,
+                });
+                return;
+            }
 
-    //         // Update contract store
-    //         this.populateContractUpdateConfig(response);
-    //         if (this.root_store.ui.is_history_tab_active) {
-    //             WS.contractUpdateHistory(this.contract_id).then(this.populateContractUpdateHistory);
-    //         }
+            // Update contract store
+            this.populateContractUpdateConfig(response);
+            if (this.root_store.ui.is_history_tab_active) {
+                WS.contractUpdateHistory(this.contract_id).then(this.populateContractUpdateHistory);
+            }
 
-    //         // Update portfolio store
-    //         this.root_store.portfolio.populateContractUpdate(response, this.contract_id);
-    //     });
-    // }
+            // Update portfolio store
+            this.root_store.portfolio.populateContractUpdate(response, this.contract_id);
+        });
+    }
 }
 
 function calculate_marker(contract_info) {
