@@ -5,14 +5,13 @@ import React from 'react';
 import { Label, Loader } from 'semantic-ui-react';
 import { addComma } from 'utils';
 import styles from './price-display.module.scss';
-import {usePrevious} from '../../../hooks/use-previous';
-import {Icon} from 'semantic-ui-react'
+import { usePrevious } from '../../../hooks/use-previous';
+import { Icon } from 'semantic-ui-react';
 
 type TPriceDisplay = {
     symbol: string;
     wsSubscribe: (req: TicksHistoryRequest, cb: (response: TicksStreamResponse) => void) => void;
 };
-
 
 const PriceDisplay = ({ symbol, wsSubscribe }: TPriceDisplay) => {
     const [price, setPrice] = React.useState('');
@@ -52,7 +51,7 @@ const PriceDisplay = ({ symbol, wsSubscribe }: TPriceDisplay) => {
             ) : (
                 <>
                     <Text size='m' weight='bold' color={price > prevPrice! ? 'profit-success' : 'loss-danger'}>
-                        {Number(price).toFixed(3)} <Icon name={price > prevPrice! ? 'angle up' : 'angle down'}/>
+                        {price} <Icon name={price > prevPrice! ? 'angle up' : 'angle down'} />
                     </Text>
                     <Label color={price > prevPrice! ? 'teal' : 'red'} size='massive' tag>
                         Price
